@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="login_Stage" prefHeight="559.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIController.IntroController">
+   <children>
+      <Button fx:id="btn_login" layoutX="420.0" layoutY="230.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="84.0" text="로그인" />
+      <Label contentDisplay="CENTER" layoutX="249.0" layoutY="106.0" style="-fx-font-size: 30;" text="대학정보시스템" />
+      <Button fx:id="btn_joinH" layoutX="206.0" layoutY="292.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="144.0" text="학사 담당자 회원가입" />
+      <TextField fx:id="list_ID" layoutX="205.0" layoutY="229.0" prefHeight="22.0" prefWidth="201.0" promptText="ID를 입력해주세요." />
+      <PasswordField fx:id="list_PW" layoutX="205.0" layoutY="257.0" prefHeight="22.0" prefWidth="201.0" promptText="PW를 입력해주세요." />
+      <Button fx:id="btn_joinG" layoutX="360.0" layoutY="292.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="144.0" text="수업 담당자 회원가입" />
+   </children>
+</AnchorPane>
