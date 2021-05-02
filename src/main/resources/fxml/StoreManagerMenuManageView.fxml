@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="475.0" prefWidth="814.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="98.0" layoutY="21.0" text="Menu">
+         <font>
+            <Font name="Arial" size="29.0" />
+         </font>
+      </Label>
+      <ListView fx:id="list_menuname" layoutX="19.0" layoutY="87.0" prefHeight="380.0" prefWidth="144.0" />
+      <ListView fx:id="list_price" layoutX="166.0" layoutY="87.0" prefHeight="380.0" prefWidth="76.0" />
+      <Label layoutX="80.0" layoutY="72.0" text="메뉴명" />
+      <Label layoutX="192.0" layoutY="72.0" text="가격" />
+      <Separator layoutX="257.0" layoutY="10.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
+      <TextField fx:id="field_id" layoutX="267.0" layoutY="50.0" prefHeight="26.0" prefWidth="280.0" promptText="등록할 메뉴를 입력해주세요." stylesheets="@../styles/textfield.css" />
+      <Label layoutX="263.0" layoutY="10.0" text="메뉴 등록">
+         <font>
+            <Font name="Arial" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
