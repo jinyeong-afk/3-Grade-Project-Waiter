@@ -54,9 +54,9 @@ public class IntroViewController implements Initializable {
                 Parent main = null;
                 
                 try {
-                    main = FXMLLoader.load(getClass().getResource("/fxml/guestMainView.fxml"));
+                    main = FXMLLoader.load(getClass().getResource("/fxml/StoreManagerMainView.fxml"));
                 } catch (IOException ex) {
-                Logger.getLogger(guestMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(StoreManagerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 okWindow();
                 Scene scene = new Scene(main);
