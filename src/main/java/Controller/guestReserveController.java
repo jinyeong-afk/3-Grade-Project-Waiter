@@ -1,0 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+
+/**
+ *
+ * @author sejin
+ */
+public class guestReserveController implements Initializable{
+    @FXML
+    private Button btn_guestreserve_check;
+    @FXML
+    private Button btn_guest_menuorder;
+    @FXML
+    private ListView list_Storelist;
+    @FXML
+    private ListView list_showreview;
+    @FXML
+    private ListView list_storeinfo;
+    @FXML
+    private ListView list_guestorder;
+    @FXML
+    private ListView list_orderlist;
+    
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    
+    }
+    
+}

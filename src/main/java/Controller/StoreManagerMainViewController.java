@@ -48,6 +48,8 @@ public class StoreManagerMainViewController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+      
     
          btn_storemanage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
