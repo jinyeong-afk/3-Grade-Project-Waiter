@@ -25,9 +25,8 @@ import javafx.stage.Stage;
 
 
 /**
- * @date : 2021.05.04 
- * @용도 :  손님용 GUI 컨트롤러 
- * @author : sejin
+ *
+ * @author 박성호, 허세진
  */
 public class GuestMainViewController implements Initializable{
     @FXML
@@ -37,9 +36,9 @@ public class GuestMainViewController implements Initializable{
     @FXML
     private Button btn_go_review;
     @FXML
-    private Button btn_guestlogout;
+    private Button btn_logout;
     @FXML
-    private Label Label_guestname;
+    private Label label_guestname;
     @FXML
     private AnchorPane guestempty_stage;
     @FXML
@@ -47,15 +46,79 @@ public class GuestMainViewController implements Initializable{
     @FXML
     private AnchorPane reserveinfo_stage;
     @FXML
-    private AnchorPane review_stage;
+    private AnchorPane main_stage;
     @FXML
-    private AnchorPane guest_stage;
+    private AnchorPane sub_stage;
+    @FXML
+    private AnchorPane third_stage;
 
       
  @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        label_guestname.setText("손님");
+        btn_go_reserve.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                sub_stage.getChildren().remove(third_stage);
+                try {
+                    third_stage = FXMLLoader.load(getClass().getResource("/fxml/GuestReserve.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(GuestReserveController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
-      
+                sub_stage.getChildren().add(third_stage);
+            }
+        });
+        
+        
+        btn_go_reserveinfo.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                sub_stage.getChildren().remove(third_stage);
+                try {
+                    third_stage = FXMLLoader.load(getClass().getResource("/fxml/GuestReserveInfo.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(GuestReserveInfoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                sub_stage.getChildren().add(third_stage);
+            }
+        });
+        
+        btn_go_review.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                sub_stage.getChildren().remove(third_stage);
+                try {
+                    third_stage = FXMLLoader.load(getClass().getResource("/fxml/GuestReview.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(GuestReviewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                sub_stage.getChildren().add(third_stage);
+            }
+        });
+        
+        btn_logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) btn_logout.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/IntroView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(IntroViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
     
     }
 }

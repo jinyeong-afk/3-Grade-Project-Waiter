@@ -30,7 +30,7 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Button fx:id="btn_ReviewScore" layoutX="225.0" layoutY="103.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" style="-fx-background-color: rgb(0,153,255);" text="확인" textFill="WHITE" />
+      <Button fx:id="btn_ReviewScore" layoutX="225.0" layoutY="103.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="확인" textFill="WHITE" />
       <Text fx:id="RINFOTEXT22" layoutX="33.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="95.66666603088379">
          <font>
             <Font size="22.0" />
@@ -41,6 +41,6 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Button fx:id="btn_Reviewwrite" layoutX="438.0" layoutY="386.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" style="-fx-background-color: rgb(0,153,255);" text="확인" textFill="WHITE" />
+      <Button fx:id="btn_Reviewwrite" layoutX="438.0" layoutY="386.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="52.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="확인" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 
 /**
  *
- * @author qwe98
+ * @author 박성호, 허세진
  */
 public class copytitleController implements Initializable {
     @FXML

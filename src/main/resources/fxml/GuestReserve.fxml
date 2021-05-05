@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
@@ -16,38 +18,37 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <ListView fx:id="list_Storelist" layoutX="16.0" layoutY="37.0" prefHeight="374.0" prefWidth="237.0" />
-      <Button fx:id="btn_guestreserve_check" layoutX="180.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: rgb(0,153,255);" text="확인" textFill="WHITE" />
-      <TextField fx:id="field_guestreserve" layoutX="16.0" layoutY="425.0" prefHeight="36.0" prefWidth="152.0" />
-      <ListView fx:id="list_storeinfo" layoutX="284.0" layoutY="243.0" prefHeight="168.0" prefWidth="246.0" />
-      <ListView fx:id="list_showreview" layoutX="284.0" layoutY="38.0" prefHeight="168.0" prefWidth="246.0" />
-      <Text layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="한 줄 리뷰" wrappingWidth="134.9830722808838">
+      <ListView fx:id="list_Storelist" layoutX="16.0" layoutY="37.0" prefHeight="374.0" prefWidth="238.0" />
+      <Button fx:id="btn_guestreserve_check" layoutX="180.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="확인" textFill="WHITE" />
+      <TextField fx:id="field_check_store" layoutX="16.0" layoutY="425.0" prefHeight="36.0" prefWidth="152.0" stylesheets="@../styles/textfield.css" />
+      <ListView fx:id="list_showreview" layoutX="283.0" layoutY="121.0" prefHeight="82.0" prefWidth="246.0" />
+      <Text layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 정보" wrappingWidth="134.9830722808838">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="317.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 정보" wrappingWidth="134.9830722808838">
+      <Text layoutX="283.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="한 줄 리뷰" wrappingWidth="111.78306007385254">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="309.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 메뉴" wrappingWidth="134.9830722808838">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="580.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="주문" wrappingWidth="134.9830722808838">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
-      <Button fx:id="btn_guest_menuorder" layoutX="727.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: rgb(0,153,255);" text="주문하기" textFill="WHITE" />
+      <Button fx:id="btn_guest_menuorder" layoutX="727.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="주문하기" textFill="WHITE" />
       <Label layoutX="595.0" layoutY="431.0" text="총">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lable_totalprice" layoutX="672.0" layoutY="431.0" visible="false">
+      <Label fx:id="label_totalprice" layoutX="620.0" layoutY="431.0" prefHeight="24.0" prefWidth="84.0" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Text layoutX="570.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="장바구니" wrappingWidth="134.9830722808838">
+      <Text layoutX="570.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="예약 확인" wrappingWidth="134.9830722808838">
          <font>
             <Font size="22.0" />
          </font>
@@ -59,8 +60,24 @@
       </Label>
       <Separator layoutX="266.0" layoutY="15.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
       <Separator layoutX="539.0" layoutY="15.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
-      <Separator layoutX="539.0" layoutY="-57.0" orientation="VERTICAL" prefHeight="545.0" prefWidth="0.0" rotate="90.0" />
-      <ListView fx:id="list_guestorder" layoutX="554.0" layoutY="38.0" prefHeight="168.0" prefWidth="246.0" />
-      <ListView fx:id="list_ordercheck" layoutX="554.0" layoutY="243.0" prefHeight="168.0" prefWidth="246.0" />
+      <ListView fx:id="list_menuname" layoutX="283.0" layoutY="271.0" prefHeight="168.0" prefWidth="162.0" />
+      <ListView fx:id="list_ordercheck" layoutX="554.0" layoutY="121.0" prefHeight="181.0" prefWidth="246.0" />
+      <TextField fx:id="field_storeinfo" editable="false" layoutX="283.0" layoutY="47.0" prefHeight="23.0" prefWidth="96.0" promptText="가게 이름" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_storeinfo_address" editable="false" layoutX="384.0" layoutY="47.0" prefHeight="23.0" prefWidth="145.0" promptText="전화번호" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_storeinfo_address" editable="false" layoutX="283.0" layoutY="77.0" prefHeight="23.0" prefWidth="246.0" promptText="가게 주소" stylesheets="@../styles/textfield.css" />
+      <Text layoutX="553.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="예약 시간" wrappingWidth="134.9830722808838">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <ListView fx:id="list_price" layoutX="447.0" layoutY="271.0" prefHeight="168.0" prefWidth="84.0" />
+      <Text layoutX="338.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="메뉴이름" wrappingWidth="51.78306007385254" />
+      <Text layoutX="474.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="가격" wrappingWidth="29.38303565979004" />
+      <DatePicker fx:id="datepicker" layoutX="554.0" layoutY="47.0" prefHeight="22.0" prefWidth="152.0" />
+      <ChoiceBox fx:id="choice_time" layoutX="715.0" layoutY="47.0" prefHeight="22.0" prefWidth="84.0" />
+      <Separator layoutX="545.0" layoutY="83.0" prefHeight="6.0" prefWidth="264.0" />
+      <Separator layoutX="272.0" layoutY="211.0" prefHeight="6.0" prefWidth="264.0" />
+      <TextField fx:id="field_check_date" editable="false" layoutX="557.0" layoutY="314.0" prefHeight="23.0" prefWidth="135.0" promptText="날짜 출력" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_check_time" editable="false" layoutX="704.0" layoutY="314.0" prefHeight="23.0" prefWidth="96.0" promptText="시간 출력" stylesheets="@../styles/textfield.css" />
    </children>
 </AnchorPane>

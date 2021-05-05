@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="adminmodify_stage" prefHeight="475.0" prefWidth="814.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="adminmodify_stage" prefHeight="475.0" prefWidth="814.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminmodifyController">
    <children>
       <ListView fx:id="list_adminguest" layoutX="23.0" layoutY="56.0" prefHeight="162.0" prefWidth="423.0" />
       <ListView fx:id="list_adminstormanager" layoutX="23.0" layoutY="277.0" prefHeight="162.0" prefWidth="423.0" />
       <TextField fx:id="field_modifyID" layoutX="603.0" layoutY="70.0" promptText="변경할 ID입력" />
       <TextField fx:id="field_modifyPW" layoutX="603.0" layoutY="100.0" promptText="변경할 패스워드 입력" />
       <TextField fx:id="feld_modifyPWcheck" layoutX="603.0" layoutY="130.0" promptText="패스워드 확인" />
-      <Button fx:id="btn_adminmodify" layoutX="484.0" layoutY="207.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="133.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../../../Downloads/Waiter-main/Waiter-main/src/main/resources/styles/button.css" text="수정" textFill="WHITE" />
+      <Button fx:id="btn_adminmodify" layoutX="484.0" layoutY="207.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="133.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="수정" textFill="WHITE" />
       <Label fx:id="admintext1" layoutX="23.0" layoutY="25.0" prefHeight="31.0" prefWidth="73.0" text="Guest">
          <font>
             <Font size="22.0" />
@@ -48,6 +48,6 @@
       </Label>
       <Separator layoutX="461.0" layoutY="9.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
       <Separator layoutX="226.0" layoutY="9.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" rotate="90.0" />
-      <Button fx:id="btn_admindelete" layoutX="631.0" layoutY="207.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="133.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../../../Downloads/Waiter-main/Waiter-main/src/main/resources/styles/button.css" text="삭제" textFill="WHITE" />
+      <Button fx:id="btn_admindelete" layoutX="631.0" layoutY="207.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="133.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="삭제" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author 박성호
+ * @author 박성호, 허세진
  */
 public class run extends Application  {
 

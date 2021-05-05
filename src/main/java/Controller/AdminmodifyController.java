@@ -16,16 +16,16 @@ import javafx.scene.control.TextField;
 
 /**
  *
- * @author sejin
+ * @author 박성호, 허세진
  */
 public class AdminmodifyController implements Initializable{
-     @FXML
+    @FXML
     private ListView list_adminguest;
-     @FXML
+    @FXML
     private ListView list_adminstormanager;
-     @FXML
+    @FXML
     private Button btn_adminmodify;
-     @FXML
+    @FXML
     private Button btn_admindelete;
     @FXML
     private TextField field_modifyID;

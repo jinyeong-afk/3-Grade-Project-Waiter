@@ -25,17 +25,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 /**
  *
- * @author 박성호
+ * @author 박성호, 허세진
  */
 public class IntroViewController implements Initializable {
     
     
     @FXML
+    private Button btn_login_guest; // 테스트용
+    @FXML 
+    private Button btn_login_manager; // 테스트용
+    @FXML
+    private Button btn_login_adminirastor; // 테스트용
+    @FXML
     private Button btn_login;
     @FXML
-    private Button btn_guest;
+    private Button btn_signup_guest;
     @FXML
-    private Button btn_manager;
+    private Button btn_signup_manager;
     @FXML
     private AnchorPane login_stage;
     @FXML
@@ -46,7 +52,7 @@ public class IntroViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
-        btn_login.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        btn_login_guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 
@@ -59,6 +65,88 @@ public class IntroViewController implements Initializable {
                 Logger.getLogger(GuestMainViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 okWindow();
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
+        
+        btn_login_manager.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/StoreManagerMainView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(StoreManagerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                okWindow();
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
+        
+        btn_login_adminirastor.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/AdminMainView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(AdminMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                okWindow();
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
+        
+        btn_signup_guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/GuestSignUp.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(GuestSignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
+        
+        btn_signup_manager.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/StoreSignUp.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(StoreSignUpController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Scene scene = new Scene(main);
                 stage.setScene(scene);
                 stage.show();

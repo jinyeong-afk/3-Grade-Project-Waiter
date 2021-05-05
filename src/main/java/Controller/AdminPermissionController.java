@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 
 /**
  *
- * @author sejin
+ * @author 박성호, 허세진
  */
 public class AdminPermissionController implements Initializable{
      @FXML
@@ -30,11 +30,15 @@ public class AdminPermissionController implements Initializable{
     @FXML
     private TextField field_permissiontext;
     @FXML
+    private TextField field_open_time;
+    @FXML
+    private TextField field_end_time;
+    @FXML
     private Label Lable_AdStoreInfo;
-     @FXML
+    @FXML
     private Label Lable_AdStoremeun;
     
-      @Override
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
     
     }

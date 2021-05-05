@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 
 /**
  *
- * @author sejin
+ * @author 박성호, 허세진
  */
 public class GuestReviewController implements Initializable{
 

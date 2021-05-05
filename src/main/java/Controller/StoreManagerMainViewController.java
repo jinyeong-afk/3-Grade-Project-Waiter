@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author qwe98
+ * @author 박성호, 허세진
  */
 public class StoreManagerMainViewController implements Initializable{
     
@@ -86,5 +86,25 @@ public class StoreManagerMainViewController implements Initializable{
                 // 메인화면에 출력
             }
         });
+         
+        btn_logout.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) btn_logout.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/IntroView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(IntroViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
     }
 }

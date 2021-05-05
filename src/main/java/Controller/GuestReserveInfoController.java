@@ -17,12 +17,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
  *
- * @author sejin
+ * @author 박성호, 허세진
  */
 public class GuestReserveInfoController implements Initializable{
     
@@ -33,7 +34,7 @@ public class GuestReserveInfoController implements Initializable{
     @FXML
     private Label label_waittime;
     @FXML
-    private ListView list_reservationinfo;
+    private TextField field_reserveinfo;
     @FXML
     private ListView list_reservationmenu;
      

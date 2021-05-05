@@ -24,7 +24,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  *
- * @author qwe98
+ * @author 박성호, 허세진
  */
 public class StoreManagerMenuManageViewController implements Initializable{
      
@@ -54,6 +54,10 @@ public class StoreManagerMenuManageViewController implements Initializable{
     private TextField field_storetable;
     @FXML
     private TextField field_storetable1;
+    @FXML
+    private TextField field_open_time;
+    @FXML
+    private TextField field_end_time;
     
     
     @Override
