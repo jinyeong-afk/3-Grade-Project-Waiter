@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="475.0" prefWidth="814.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StoreManagerMenuManageViewController">
+   <children>
+      <Label layoutX="98.0" layoutY="21.0" text="Menu">
+         <font>
+            <Font name="Arial" size="29.0" />
+         </font>
+      </Label>
+      <ListView fx:id="list_menuname" layoutX="19.0" layoutY="87.0" prefHeight="380.0" prefWidth="144.0" />
+      <ListView fx:id="list_price" layoutX="166.0" layoutY="87.0" prefHeight="380.0" prefWidth="76.0" />
+      <Label layoutX="80.0" layoutY="72.0" text="메뉴명" />
+      <Label layoutX="192.0" layoutY="72.0" text="가격" />
+      <Separator layoutX="250.0" layoutY="10.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
+      <TextField fx:id="field_registor_menuname" layoutX="267.0" layoutY="104.0" prefHeight="26.0" prefWidth="280.0" promptText="등록할 메뉴를 입력해주세요." stylesheets="@../styles/textfield.css" />
+      <Label layoutX="267.0" layoutY="59.0" text="메뉴 관리">
+         <font>
+            <Font name="Arial" size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_menu_registor" layoutX="267.0" layoutY="140.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../../../../../Waiter/src/main/resources/styles/button.css" text="등록" textFill="WHITE" />
+      <TextField fx:id="field_registor_price" layoutX="556.0" layoutY="104.0" prefHeight="26.0" prefWidth="237.0" promptText="가격을 입력해주세요" stylesheets="@../styles/textfield.css" />
+      <Button fx:id="btn_menu_modify" layoutX="447.0" layoutY="140.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../../../../../Waiter/src/main/resources/styles/button.css" text="수정" textFill="WHITE" />
+      <Button fx:id="btn_menu_delete" layoutX="630.0" layoutY="140.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="161.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../../../../../Waiter/src/main/resources/styles/button.css" text="삭제" textFill="WHITE" />
+      <Label layoutX="267.0" layoutY="213.0" text="가게 정보">
+         <font>
+            <Font name="Arial" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="field_storename" layoutX="267.0" layoutY="255.0" prefHeight="26.0" prefWidth="270.0" promptText="가게 이름" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_storetel" layoutX="539.0" layoutY="255.0" prefHeight="26.0" prefWidth="270.0" promptText="가게 연락처" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_storeaddress" layoutX="267.0" layoutY="292.0" prefHeight="26.0" prefWidth="543.0" promptText="가게 주소" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_storetable" layoutX="267.0" layoutY="330.0" prefHeight="26.0" prefWidth="270.0" promptText="테이블 수(오프라인)" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_storetable1" layoutX="539.0" layoutY="330.0" prefHeight="26.0" prefWidth="270.0" promptText="재고 수 (Only Take Out)" stylesheets="@../styles/textfield.css" />
+      <Button fx:id="btn_store_modify" layoutX="267.0" layoutY="370.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="543.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../../../../../Waiter/src/main/resources/styles/button.css" text="수정" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Adminmain_Stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.guestMainViewController">
+   <children>
+      <Text layoutX="31.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waiter" wrappingWidth="134.9830722808838">
+         <font>
+            <Font name="Monotype Corsiva" size="33.0" />
+         </font>
+      </Text>
+      <Label fx:id="admintext1" layoutX="865.0" layoutY="29.0" prefHeight="18.0" prefWidth="67.0" text="관리자 모드" />
+      <Button fx:id="btn_adminlogout" layoutX="932.0" layoutY="27.0" mnemonicParsing="false" style="-fx-background-color: rgb(0,153,255);" text="Logout" textFill="WHITE" />
+      <Button fx:id="btn_permisson" layoutX="28.0" layoutY="110.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: rgb(0,153,255);" text="매장 등록 허가" textFill="WHITE" />
+      <Button fx:id="btn_userinfomodify" layoutX="28.0" layoutY="280.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="140.0" style="-fx-background-color: rgb(0,153,255);" text="이용자 정보 수정" textFill="WHITE" />
+      <AnchorPane fx:id="Adminempty_stage" layoutX="191.0" layoutY="85.0" prefHeight="475.0" prefWidth="814.0" />
+      <Separator layoutX="178.0" layoutY="55.0" orientation="VERTICAL" prefHeight="518.0" prefWidth="6.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="login_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1025.0" style="-fx-background-color: rgb(255, 255, 255);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.IntroViewController">
+   <children>
+      <Label layoutX="450.0" layoutY="37.0" prefHeight="62.0" prefWidth="167.0" text="Waiter">
+         <font>
+            <Font name="Ami R" size="50.0" />
+         </font>
+      </Label>
+      <TextField fx:id="field_id" layoutX="373.0" layoutY="210.0" prefHeight="26.0" prefWidth="280.0" promptText="ID를 입력해주세요" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_pw" layoutX="373.0" layoutY="256.0" prefHeight="26.0" prefWidth="280.0" promptText="PW를 입력해주세요" stylesheets="@../styles/textfield.css" />
+      <Button fx:id="btn_login" layoutX="373.0" layoutY="316.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="280.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="LOGIN" textFill="WHITE" />
+      <Label layoutX="399.0" layoutY="428.0" text="Waiter 프로그램이 처음이신가요 ?">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_guest" layoutX="373.0" layoutY="468.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="119.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="GUEST" textFill="WHITE" />
+      <Button fx:id="btn_manager" layoutX="533.0" layoutY="468.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="119.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="MANAGER" textFill="WHITE" />
+   </children>
+</AnchorPane>
