@@ -16,7 +16,7 @@ import javafx.scene.control.ListView;
  *
  * @author sejin
  */
-public class guestReserveController implements Initializable{
+public class GuestReserveController implements Initializable{
     @FXML
     private Button btn_guestreserve_check;
     @FXML

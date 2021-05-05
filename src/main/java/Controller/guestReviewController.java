@@ -19,7 +19,7 @@ import javafx.scene.control.TextArea;
  *
  * @author sejin
  */
-public class guestReviewController implements Initializable{
+public class GuestReviewController implements Initializable{
 
     @FXML
     private RadioButton review_score5;

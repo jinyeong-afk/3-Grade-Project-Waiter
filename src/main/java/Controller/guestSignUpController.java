@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
  *
  * @author sejin
  */
-public class guestSignUpController implements Initializable{
+public class GuestSignUpController implements Initializable{
    
     @FXML
     private Button btn_idcheck;
@@ -23,17 +23,17 @@ public class guestSignUpController implements Initializable{
     private Button btn_signup;
     @FXML
     private TextField field_signupid;
-            @FXML
+    @FXML
     private TextField field_signuppw;
-            @FXML
+    @FXML
     private TextField field_signuppwcheck;
-            @FXML
+    @FXML
     private TextField field_signupname;
-            @FXML
+    @FXML
     private TextField field_signupadress;
-            @FXML
+    @FXML
     private TextField field_signuptel;
-            @FXML
+    @FXML
     private TextField field_signupmoney;
     @Override
     public void initialize(URL url, ResourceBundle rb) {

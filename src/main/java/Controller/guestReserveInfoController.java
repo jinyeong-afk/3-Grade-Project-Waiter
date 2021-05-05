@@ -24,16 +24,17 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author sejin
  */
-public class guestReserveInfoController implements Initializable{
-        @FXML
+public class GuestReserveInfoController implements Initializable{
+    
+    @FXML
     private Button btn_reserveinfo_cancle;
     @FXML
     private Label lable_waitperson;
-      @FXML
+    @FXML
     private Label label_waittime;
-     @FXML
+    @FXML
     private ListView list_reservationinfo;
-       @FXML
+    @FXML
     private ListView list_reservationmenu;
      
      
