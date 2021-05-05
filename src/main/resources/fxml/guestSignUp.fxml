@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="signup_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1025.0" style="-fx-background-color: rgb(255, 255, 255);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.IntroViewController">
+<AnchorPane fx:id="signup_stage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="1025.0" style="-fx-background-color: rgb(255, 255, 255);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GuestSignUpController">
    <children>
       <Label layoutX="23.0" layoutY="22.0" prefHeight="62.0" prefWidth="167.0" text="Waiter">
          <font>

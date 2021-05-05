@@ -30,31 +30,31 @@ import javafx.stage.Stage;
  * @author : sejin
  */
 public class guestMainViewController implements Initializable{
-      @FXML
+    @FXML
     private Button btn_go_reserve;
-      @FXML
+    @FXML
     private Button btn_go_reserveinfo;
-      @FXML
+    @FXML
     private Button btn_go_review;
-      @FXML
+    @FXML
     private Button btn_guestlogout;
-      @FXML
+    @FXML
     private Label Label_guestname;
-      @FXML
+    @FXML
     private AnchorPane guestempty_stage;
-      @FXML
+    @FXML
     private AnchorPane reserve_stage;
-      @FXML
+    @FXML
     private AnchorPane reserveinfo_stage;
-      @FXML
+    @FXML
     private AnchorPane review_stage;
-      @FXML
+    @FXML
     private AnchorPane guest_stage;
 
       
  @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Label_guestname.setText("허세진");
+//        Label_guestname.setText("허세진");
         btn_guestlogout.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -131,5 +131,4 @@ public class guestMainViewController implements Initializable{
       
     
     }
-   
 }

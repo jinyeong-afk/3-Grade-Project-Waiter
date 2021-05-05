@@ -18,7 +18,7 @@ import javafx.scene.control.RadioButton;
  *
  * @author sejin
  */
-public class storeSignUpController implements Initializable{
+public class StoreSignUpController implements Initializable{
    
     @FXML
     private Button btn_store_idcheck;
@@ -26,22 +26,23 @@ public class storeSignUpController implements Initializable{
     private Button btn_store_signup;
     @FXML
     private TextField field_store_signupid;
-            @FXML
+    @FXML
     private TextField field_store_signuppw;
-            @FXML
+    @FXML
     private TextField field_store_signuppwcheck;
-            @FXML
+    @FXML
     private TextField field_store_signupname;
-            @FXML
+    @FXML
     private TextField field_store_signupadress;
-            @FXML
+    @FXML
     private TextField field_store_signuptel;
-            @FXML
+    @FXML
     private TextField field_store_signupmoney;
-             @FXML
+    @FXML
     private RadioButton radiobtn_store_table;
-             @FXML
+    @FXML
     private RadioButton radiobtn_store_takeout;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
