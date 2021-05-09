@@ -18,39 +18,39 @@
       <TextField fx:id="field_signuppw" layoutX="367.0" layoutY="178.0" prefHeight="26.0" prefWidth="280.0" promptText="PW를 입력해주세요" stylesheets="@../styles/textfield.css" />
       <Button fx:id="btn_signup" layoutX="361.0" layoutY="445.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="399.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="SING UP" textFill="WHITE" />
       <Button fx:id="btn_idcheck" layoutX="659.0" layoutY="139.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="98.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="ID_CHECK" textFill="WHITE" />
-      <Label fx:id="admintext1111" layoutX="334.0" layoutY="138.0" prefHeight="23.0" prefWidth="27.0" text="ID">
+      <Label layoutX="334.0" layoutY="138.0" prefHeight="23.0" prefWidth="27.0" text="ID">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="admintext11111" layoutX="322.0" layoutY="178.0" prefHeight="23.0" prefWidth="35.0" text="PW">
+      <Label layoutX="322.0" layoutY="178.0" prefHeight="23.0" prefWidth="35.0" text="PW">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="admintext111111" layoutX="263.0" layoutY="218.0" prefHeight="23.0" prefWidth="98.0" text="PW CHECK">
+      <Label layoutX="263.0" layoutY="218.0" prefHeight="23.0" prefWidth="98.0" text="PW CHECK">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="admintext1111112" layoutX="293.0" layoutY="298.0" prefHeight="23.0" prefWidth="65.0" text="Address">
+      <Label layoutX="293.0" layoutY="298.0" prefHeight="23.0" prefWidth="65.0" text="Address">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="admintext111111211" layoutX="329.0" layoutY="338.0" prefHeight="23.0" prefWidth="27.0" text="Tel">
+      <Label layoutX="329.0" layoutY="338.0" prefHeight="23.0" prefWidth="27.0" text="Tel">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="admintext1111112111" layoutX="302.0" layoutY="378.0" prefHeight="23.0" prefWidth="57.0" text="Charge">
+      <Label layoutX="294.0" layoutY="378.0" prefHeight="23.0" prefWidth="66.0" text="Balance">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Separator layoutX="359.0" layoutY="111.0" orientation="VERTICAL" prefHeight="313.0" prefWidth="5.0" />
       <TextField fx:id="field_signuppwcheck" layoutX="367.0" layoutY="218.0" prefHeight="26.0" prefWidth="280.0" promptText="PW를 입력해주세요" stylesheets="@../styles/textfield.css" />
-      <Label fx:id="admintext11111121" layoutX="308.0" layoutY="258.0" prefHeight="23.0" prefWidth="49.0" text="Name">
+      <Label layoutX="308.0" layoutY="258.0" prefHeight="23.0" prefWidth="49.0" text="Name">
          <font>
             <Font size="18.0" />
          </font>
