@@ -7,10 +7,10 @@ package Controller;
 
 import DB.DTO;
 import DB.MemberDAO;
-import Src.Guest;
-import Src.Member;
-import Src.MemberType;
-import Src.SignUpBuilder;
+import Src.SignUp_BuilderPattern.Guest;
+import Src.SignUp_BuilderPattern.Member;
+import Src.SignUp_BuilderPattern.MemberType;
+import Src.SignUp_BuilderPattern.SignUpBuilder;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -43,9 +44,9 @@ public class GuestSignUpController implements Initializable{
     @FXML
     private TextField field_signupid;
     @FXML
-    private TextField field_signuppw;
+    private PasswordField field_signuppw;
     @FXML
-    private TextField field_signuppwcheck;
+    private PasswordField field_signuppwcheck;
     @FXML
     private TextField field_signupname;
     @FXML
@@ -80,11 +81,11 @@ public class GuestSignUpController implements Initializable{
             @Override
             public void handle(MouseEvent event) {
                 if(check_id == 1 & field_signuppw.getText().contains(field_signuppwcheck.getText()) 
-                        & field_signuppwcheck.getText() != null
-                        & field_signupname.getText() != null
-                        & field_signupadress.getText() != null
-                        & field_signuptel.getText() != null
-                        & field_signupmoney.getText() != null ){
+                        & !(field_signuppwcheck.getText().equals(""))
+                        & !(field_signupname.getText().equals(""))
+                        & !(field_signupadress.getText().equals(""))
+                        & !(field_signuptel.getText().equals(""))
+                        & !(field_signupmoney.getText().equals(""))){
                     Member member = new SignUpBuilder()  // builder 패턴을 적용한 소스코드를 통한 회원가입 
                                     .setIdx(1)
                                     .setId(field_signupid.getText())
@@ -96,8 +97,20 @@ public class GuestSignUpController implements Initializable{
                                     .build(MemberType.GUEST);
                     md.signUpGuest(member.getIdx(), member.getId(), member.getPw(), member.getName(), member.getTel(), member.getAddress(), member.getBalance());
                     System.out.println("회원가입이 완료되었습니다.");
+                    
+                    Stage stage = (Stage) btn_goback.getScene().getWindow();
+                    Parent main = null;
+                
+                    try {
+                        main = FXMLLoader.load(getClass().getResource("/fxml/IntroView.fxml"));
+                    } catch (IOException ex) {
+                    Logger.getLogger(IntroViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(main);
+                    stage.setScene(scene);
+                    stage.show();
+                    }
                 }
-            }
         }
         );
         

@@ -5,8 +5,15 @@
  */
 package Controller;
 
+import DB.MemberDAO;
+import Src.SignUp_BuilderPattern.Guest;
+import Src.SignUp_BuilderPattern.Member;
+import Src.SignUp_BuilderPattern.MemberType;
+import Src.SignUp_BuilderPattern.SignUpBuilder;
+import Src.SignUp_BuilderPattern.StoreManager;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
@@ -36,30 +44,102 @@ public class StoreSignUpController implements Initializable{
     @FXML
     private Button btn_goback;
     @FXML
+    private Button btn_storetype_check;
+    @FXML
     private TextField field_store_signupid;
     @FXML
-    private TextField field_store_signuppw;
+    private PasswordField field_store_signuppw;
     @FXML
-    private TextField field_store_signuppwcheck;
+    private PasswordField field_store_signuppwcheck;
     @FXML
     private TextField field_store_signupname;
     @FXML
-    private TextField field_store_signupadress;
+    private TextField field_store_signupaddress;
     @FXML
     private TextField field_store_signuptel;
     @FXML
-    private TextField field_store_signupmoney;
+    private TextField field_table_count;
+    @FXML
+    private TextField field_takeout_count;
     @FXML
     private TextField field_open_time;
     @FXML
     private TextField field_end_time;
-    @FXML
-    private RadioButton radiobtn_store_table;
-    @FXML
-    private RadioButton radiobtn_store_takeout;
+    
+    int check_id = 0; // id 체크를 위해 사용, 1인경우는 중복된 아이디가 있다.
+    ArrayList<StoreManager> guest_list= new ArrayList<StoreManager>();
+    MemberDAO md = new MemberDAO();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        btn_store_idcheck.setOnMouseClicked(new EventHandler<MouseEvent>() { // id 중복확인 체크
+            @Override
+            public void handle(MouseEvent event) {
+                if(md.checkId(field_store_signupid.getText())){ // id가 중복이면
+                    check_id = 2;
+                    System.out.println("중복된 ID 입니다.");
+                }else{
+                    check_id = 1;
+                    System.out.println("사용가능한 ID 입니다.");
+                }
+            }
+        }
+        );
+        
+        btn_storetype_check.setOnMouseClicked(new EventHandler<MouseEvent>() { 
+            @Override
+            public void handle(MouseEvent event) {
+                if(!(field_table_count.getText().equals(""))){
+                    field_takeout_count.setText("0");
+                }else{
+                    field_table_count.setText("0");
+                }
+            }
+        }
+        );
+        
+        btn_store_signup.setOnMouseClicked(new EventHandler<MouseEvent>() { // 회원가입
+            @Override
+            public void handle(MouseEvent event) {
+                if(check_id == 1 & field_store_signuppw.getText().contains(field_store_signuppwcheck.getText()) 
+                        & !(field_store_signuppwcheck.getText().equals(""))
+                        & !(field_store_signupname.getText().equals(""))
+                        & !(field_store_signupaddress.getText().equals(""))
+                        & !(field_store_signuptel.getText().equals(""))
+                        & (!(field_table_count.getText().equals("")) || !(field_takeout_count.getText().equals("")))
+                        & (!(field_open_time.getText().equals("")) || !(field_end_time.getText().equals("")))){
+                    Member member = new SignUpBuilder()  // builder 패턴을 적용한 소스코드를 통한 회원가입 
+                                    .setIdx(2)
+                                    .setId(field_store_signupid.getText())
+                                    .setPw(field_store_signuppw.getText())
+                                    .setName(field_store_signupname.getText())
+                                    .setAddress(field_store_signupaddress.getText())
+                                    .setTel(field_store_signuptel.getText())
+                                    .setTable_set(Integer.parseInt(field_table_count.getText()))
+                                    .setTakeout_set(Integer.parseInt(field_takeout_count.getText()))
+                                    .setOpen_time(Integer.parseInt(field_open_time.getText()))
+                                    .setClose_time(Integer.parseInt(field_end_time.getText()))
+                                    .build(MemberType.STOREMANAGER);
+                    md.signUpStoreManager(member.getIdx(), member.getId(), member.getPw(), member.getName(), member.getTel(), member.getAddress(), member.getTable_set()
+                                           , member.getTakeout_set(), member.getOpen_time(), member.getClose_time());
+                    System.out.println("회원가입이 완료되었습니다.");
+                    
+                    Stage stage = (Stage) btn_goback.getScene().getWindow();
+                    Parent main = null;
+                
+                    try {
+                        main = FXMLLoader.load(getClass().getResource("/fxml/IntroView.fxml"));
+                    } catch (IOException ex) {
+                    Logger.getLogger(IntroViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Scene scene = new Scene(main);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            }
+        }
+        );
         
         btn_goback.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
