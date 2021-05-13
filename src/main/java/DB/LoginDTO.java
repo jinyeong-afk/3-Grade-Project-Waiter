@@ -50,7 +50,7 @@ public class LoginDTO {
                 System.out.println("DB 로드 실패");
             }
         return check;
-	}
+    }
     
     public int getIdx(String id, String pw) throws SQLException{
         
@@ -75,5 +75,29 @@ public class LoginDTO {
                 System.out.println("DB 로드 실패");
             }
         return flag;
+    }
+    
+    public String getname(String id) throws SQLException{
+
+        String name = "";
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("연결");
+            sql = "select * from member where id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                name = rs.getString(4);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return name;
     }
 }

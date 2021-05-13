@@ -54,6 +54,8 @@ public class IntroViewController implements Initializable {
     @FXML
     private TextField field_pw;
     
+    protected static String getField;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
@@ -162,6 +164,7 @@ public class IntroViewController implements Initializable {
         btn_login.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                getField = field_id.getText();
                 Login storeManagerLogin = new Login(new StoreManagerLoginBehavior());
                 Login guestLogin = new Login(new GuestLoginBehavior());
                 Stage stage = (Stage) login_stage.getScene().getWindow();

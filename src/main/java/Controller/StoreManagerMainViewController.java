@@ -5,9 +5,12 @@
  */
 package Controller;
 
+import DB.DTO;
+import DB.LoginDTO;
 import static Controller.IntroViewController.okWindow;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,20 +48,30 @@ public class StoreManagerMainViewController implements Initializable{
     @FXML
     private Label label_name;
     
+    LoginDTO db = new LoginDTO();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-      
+        try {
+            label_name.setText(db.getname(IntroViewController.getField));
+        } catch (SQLException ex) {
+            Logger.getLogger(StoreManagerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     
-         btn_storemanage.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        btn_storemanage.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 //                System.out.println("OK");
 //                Stage stage = (Stage) Smain_stage.getScene().getWindow();
 //                Parent sub = null;
                 sub_stage.getChildren().remove(third_stage);
+               
+                
+                
                 try {
+                    
                     third_stage = FXMLLoader.load(getClass().getResource("/fxml/StoreManagerMenuManageView.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
