@@ -100,4 +100,27 @@ public class LoginDTO {
             }
         return name;
     }
+    public String getstorename(String id) throws SQLException{
+
+        String storename = "";
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("연결");
+            sql = "select * from store where id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs=pstmt.executeQuery();
+            if(rs.next()){
+                storename = rs.getString(2);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return storename;
+    }
 }

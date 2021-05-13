@@ -54,6 +54,33 @@ public class StoreDAO{
                 System.out.println("DB 로드 실패");
             }
     }
+    public void signUpMenu(String store_name, String menu_name, int price){
+            try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("연결"); 
+                
+                
+                sql = "insert into menu(store_name, menu_name, menu_value)";
+                sql+= "values(?,?,?)";
+                
+                
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, store_name );
+                pstmt.setString(2, menu_name);
+                pstmt.setInt(3, price);
+               
+         
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }
     
     public void signUpStore(String ID,  String storetype, String storename, String storetel, String storeaddress, int open_time, int close_time, int max){
             try{

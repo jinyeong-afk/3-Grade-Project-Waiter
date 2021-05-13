@@ -5,7 +5,8 @@
  */
 package Controller;
 
-
+import DB.DTO;
+import DB.LoginDTO;
 import DB.StoreDAO;
 import Src.StoreRegister.StoreFactory;
 import Src.StoreRegister.StoreRegister;
@@ -71,15 +72,21 @@ public class StoreManagerMenuManageViewController implements Initializable{
     private TextField field_end_time;
     @FXML
     private TextField field_storetype;
+    @FXML
+    private TextField field_registor_menuname;
+    @FXML
+    private TextField field_registor_price;
     
     StoreDAO sd = new StoreDAO();
     ArrayList<String> stringStoreList = new ArrayList<>();
     ArrayList<Integer> IntegerStoreList = new ArrayList<>();
-    
+    LoginDTO db = new LoginDTO();
+    String a;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
         if(!(sd.checkRegist(IntroViewController.getField))){
+            btn_store_modify.setVisible(false);
             btn_store_register.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -96,6 +103,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                                 field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()), Integer.parseInt(field_max.getText()));
                         sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
                         store.getopen_time(), store.getclose_time(), store.getmax());
+                        
                         System.out.println("매장 객체 생성");
                     }
                 }
@@ -105,7 +113,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
             try {
                 stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
                 IntegerStoreList = sd.getIntStoreInformaiton(IntroViewController.getField);                
-                
+                btn_store_register.setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -137,6 +145,24 @@ public class StoreManagerMenuManageViewController implements Initializable{
                         sd.ChangeStore(IntroViewController.getField, field_storename.getText(), field_storeaddress.getText(),   
                         field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()), Integer.parseInt(field_max.getText()));
                         System.out.println("매장 정보 변경");
+                    }
+            }
+        }
+        );
+              btn_menu_registor.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                System.out.println("메뉴 추가 됐냐"); 
+                           System.out.println(a);
+                    if( !(field_registor_menuname.getText().equals("")
+                        & !(field_registor_price.getText().equals(""))))
+                       { 
+                           
+                    
+                            
+                            sd.signUpMenu(field_storename.getText(), field_registor_menuname.getText(), Integer.parseInt(field_registor_price.getText()));
+                                                     
+                   
                     }
             }
         }
