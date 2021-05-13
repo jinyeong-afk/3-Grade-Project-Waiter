@@ -120,13 +120,14 @@ public class StoreDAO{
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,id);
             rs=pstmt.executeQuery(); 
-            String[] valueString = new String[3];
+            String[] valueString = new String[4];
 
             
             while(rs.next()){
-                valueString[0] = rs.getString(1);
-                valueString[1] = rs.getString(2); 
-                valueString[2] = rs.getString(8);
+                valueString[0] = rs.getString(2); //storename
+                valueString[1] = rs.getString(3); //storeaddress 
+                valueString[2] = rs.getString(4); //storetel
+                valueString[3] = rs.getString(8); //storetype
                 for(int i=0; i<valueString.length; i++){
                     list.add(valueString[i]);
                 }
@@ -153,16 +154,14 @@ public class StoreDAO{
             pstmt.setString(1,id);
             rs=pstmt.executeQuery(); 
 
-            int[] valueInt = new int[6];
+            int[] valueInt = new int[4];
             
             while(rs.next()){
-                valueInt[0] = rs.getInt(3);
-                valueInt[1] = rs.getInt(4); 
-                valueInt[2] = rs.getInt(5);
-                valueInt[3] = rs.getInt(6);
-                valueInt[4] = rs.getInt(7);
-                valueInt[5] = rs.getInt(9);
-                
+                valueInt[0] = rs.getInt(5); //opentime
+                valueInt[1] = rs.getInt(6); //close_time
+                valueInt[2] = rs.getInt(7); //max
+                valueInt[3] = rs.getInt(9); //permission
+               
                 for(int i=0; i<valueInt.length; i++){
                     list.add(valueInt[i]);
                 }

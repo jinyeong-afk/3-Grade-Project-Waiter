@@ -110,13 +110,13 @@ public class StoreManagerMenuManageViewController implements Initializable{
                 Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            field_storename.setText(stringStoreList.get(0));
-            field_storeaddress.setText(stringStoreList.get(1));
-            field_storetel.setText(Integer.toString(IntegerStoreList.get(0)));
-            field_open_time.setText(Integer.toString(IntegerStoreList.get(1)));
-            field_end_time.setText(Integer.toString(IntegerStoreList.get(2)));
-            field_max.setText(Integer.toString(IntegerStoreList.get(3)));
-            field_storetype.setText(stringStoreList.get(2));
+              field_storename.setText(stringStoreList.get(0));
+              field_storeaddress.setText(stringStoreList.get(1));
+              field_storetel.setText(stringStoreList.get(2));
+              field_open_time.setText(Integer.toString(IntegerStoreList.get(0)));
+              field_end_time.setText(Integer.toString(IntegerStoreList.get(1)));
+              field_max.setText(Integer.toString(IntegerStoreList.get(2)));
+              field_storetype.setText(stringStoreList.get(3));
             
             
             btn_store_modify.setOnMouseClicked(new EventHandler<MouseEvent>() {
