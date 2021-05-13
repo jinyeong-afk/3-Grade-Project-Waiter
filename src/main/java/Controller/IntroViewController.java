@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import DB.LoginDTO;
+import Src.SignIn_StrategyPattern.GuestLoginBehavior;
+import Src.SignIn_StrategyPattern.Login;
+import Src.SignIn_StrategyPattern.StoreManagerLoginBehavior;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,7 +77,6 @@ public class IntroViewController implements Initializable {
             }
         }
         );
-        
         btn_login_manager.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -151,6 +155,41 @@ public class IntroViewController implements Initializable {
                 stage.setScene(scene);
                 stage.show();
 
+            }
+        }
+        );
+        
+        btn_login.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Login storeManagerLogin = new Login(new StoreManagerLoginBehavior());
+                Login guestLogin = new Login(new GuestLoginBehavior());
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+//                System.out.println(storeManagerLogin.unLock(field_id.getText(), field_pw.getText()));
+//                System.out.println(guestLogin.unLock(field_id.getText(), field_pw.getText()));
+                
+                if( guestLogin.unLock(field_id.getText(), field_pw.getText()) == 1){
+                    try {
+                        main = FXMLLoader.load(getClass().getResource("/fxml/GuestMainView.fxml"));
+                    } catch (IOException ex) {
+                    Logger.getLogger(GuestMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    okWindow();
+                    Scene scene = new Scene(main);
+                    stage.setScene(scene);
+                    stage.show();
+                } else if( storeManagerLogin.unLock(field_id.getText(), field_pw.getText()) == 2){
+                    try {
+                        main = FXMLLoader.load(getClass().getResource("/fxml/StoreManagerMainView.fxml"));
+                    } catch (IOException ex) {
+                    Logger.getLogger(StoreManagerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    okWindow();
+                    Scene scene = new Scene(main);
+                    stage.setScene(scene);
+                    stage.show();   
+                }
             }
         }
         );

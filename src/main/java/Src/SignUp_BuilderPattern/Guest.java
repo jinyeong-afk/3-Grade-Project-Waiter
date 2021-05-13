@@ -20,4 +20,5 @@ public class Guest extends Member{
         this.address = address;
         this.balance = balance;
     }
+  
 }
