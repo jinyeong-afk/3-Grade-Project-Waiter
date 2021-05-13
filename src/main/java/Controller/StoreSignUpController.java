@@ -43,8 +43,7 @@ public class StoreSignUpController implements Initializable{
     private Button btn_store_signup;
     @FXML
     private Button btn_goback;
-    @FXML
-    private Button btn_storetype_check;
+
     @FXML
     private TextField field_store_signupid;
     @FXML
@@ -54,17 +53,11 @@ public class StoreSignUpController implements Initializable{
     @FXML
     private TextField field_store_signupname;
     @FXML
-    private TextField field_store_signupaddress;
+    private TextField field_store_signupaddress;            
     @FXML
     private TextField field_store_signuptel;
     @FXML
-    private TextField field_table_count;
-    @FXML
-    private TextField field_takeout_count;
-    @FXML
-    private TextField field_open_time;
-    @FXML
-    private TextField field_end_time;
+    private TextField field_store_storetype;
     
     int check_id = 0; // id 체크를 위해 사용, 1인경우는 중복된 아이디가 있다.
     ArrayList<StoreManager> guest_list= new ArrayList<StoreManager>();
@@ -86,18 +79,7 @@ public class StoreSignUpController implements Initializable{
             }
         }
         );
-        
-        btn_storetype_check.setOnMouseClicked(new EventHandler<MouseEvent>() { 
-            @Override
-            public void handle(MouseEvent event) {
-                if(!(field_table_count.getText().equals(""))){
-                    field_takeout_count.setText("0");
-                }else{
-                    field_table_count.setText("0");
-                }
-            }
-        }
-        );
+
         
         btn_store_signup.setOnMouseClicked(new EventHandler<MouseEvent>() { // 회원가입
             @Override
@@ -106,9 +88,8 @@ public class StoreSignUpController implements Initializable{
                         & !(field_store_signuppwcheck.getText().equals(""))
                         & !(field_store_signupname.getText().equals(""))
                         & !(field_store_signupaddress.getText().equals(""))
-                        & !(field_store_signuptel.getText().equals(""))
-                        & (!(field_table_count.getText().equals("")) || !(field_takeout_count.getText().equals("")))
-                        & (!(field_open_time.getText().equals("")) || !(field_end_time.getText().equals("")))){
+                        & !(field_store_signuptel.getText().equals(""))){
+             //& (field_store_storetype.getText().equalsIgnoreCase("forhere") || field_store_storetype.getText().equalsIgnoreCase("takeout"))){
                     Member member = new SignUpBuilder()  // builder 패턴을 적용한 소스코드를 통한 회원가입 
                                     .setIdx(2)
                                     .setId(field_store_signupid.getText())
@@ -116,13 +97,9 @@ public class StoreSignUpController implements Initializable{
                                     .setName(field_store_signupname.getText())
                                     .setAddress(field_store_signupaddress.getText())
                                     .setTel(field_store_signuptel.getText())
-                                    .setTable_set(Integer.parseInt(field_table_count.getText()))
-                                    .setTakeout_set(Integer.parseInt(field_takeout_count.getText()))
-                                    .setOpen_time(Integer.parseInt(field_open_time.getText()))
-                                    .setClose_time(Integer.parseInt(field_end_time.getText()))
+                                    .setStoretype(field_store_storetype.getText())
                                     .build(MemberType.STOREMANAGER);
-                    md.signUpStoreManager(member.getIdx(), member.getId(), member.getPw(), member.getName(), member.getTel(), member.getAddress(), member.getTable_set()
-                                           , member.getTakeout_set(), member.getOpen_time(), member.getClose_time());
+                    md.signUpStoreManager(member.getIdx(), member.getId(), member.getPw(), member.getName(), member.getTel(), member.getAddress(), member.getStoretype());
                     System.out.println("회원가입이 완료되었습니다.");
                     
                     Stage stage = (Stage) btn_goback.getScene().getWindow();

@@ -59,9 +59,9 @@ public class StoreManagerMenuManageViewController implements Initializable{
     @FXML
     private TextField field_end_time;
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     
     }
 }

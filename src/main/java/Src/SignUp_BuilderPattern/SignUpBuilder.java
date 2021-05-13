@@ -18,10 +18,7 @@ public class SignUpBuilder {
     private String address;
     private String tel;
     private int balance;
-    private int table_set;
-    private int takeout_set;
-    private int open_time;
-    private int close_time;
+    private String storetype;
 
     public SignUpBuilder setIdx(int idx) {
         this.idx = idx;
@@ -58,23 +55,9 @@ public class SignUpBuilder {
         return this;
     }
 
-    public SignUpBuilder setTable_set(int table_set) {
-        this.table_set = table_set;
-        return this;
-    }
 
-    public SignUpBuilder setTakeout_set(int takeout_set) {
-        this.takeout_set = takeout_set;
-        return this;
-    }
-
-    public SignUpBuilder setOpen_time(int open_time) {
-        this.open_time = open_time;
-        return this;
-    }
-
-    public SignUpBuilder setClose_time(int close_time) {
-        this.close_time = close_time;
+    public SignUpBuilder setStoretype(String store_type) {
+        this.storetype = store_type;
         return this;
     }
     
@@ -86,7 +69,7 @@ public class SignUpBuilder {
                 return new Guest(idx, id, pw, name, tel, address, balance);
                 
             case STOREMANAGER:
-                return new StoreManager(idx, id, pw, name, tel, address, table_set, takeout_set, open_time, close_time);
+                return new StoreManager(idx, id, pw, name, tel, address, storetype);
             
             default:
                 return null;

@@ -18,10 +18,7 @@ public class Member {
     protected String address;
     protected String tel;
     protected int balance;
-    protected int table_set;
-    protected int takeout_set;
-    protected int open_time;
-    protected int close_time;
+    protected String storetype;
 
     public int getIdx() {
         return idx;
@@ -51,21 +48,7 @@ public class Member {
         return balance;
     }
 
-    public int getTable_set() {
-        return table_set;
+    public String getStoretype() {
+        return storetype;
     }
-
-    public int getTakeout_set() {
-        return takeout_set;
-    }
-
-    public int getOpen_time() {
-        return open_time;
-    }
-
-    public int getClose_time() {
-        return close_time;
-    }
-    
-    
 }

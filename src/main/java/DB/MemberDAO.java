@@ -77,14 +77,14 @@ public class MemberDAO {
             }
     }
     
-     public void signUpStoreManager(int idx, String id, String pw, String name, String tel, String address, int tableSet, int takeoutSet, int openTime, int closeTime){
+     public void signUpStoreManager(int idx, String id, String pw, String name, String tel, String address, String storetype){
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
                 System.out.println("연결"); 
                 
-                sql = "insert into member(idx, id, pw, name, tel, address, table_set, takeout_set, open_time, close_time)";
-                sql+= "values(?,?,?,?,?,?,?,?,?,?)";
+                sql = "insert into member(idx, id, pw, name, tel, address, storetype)";
+                sql+= "values(?,?,?,?,?,?,?)";
                 
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1,idx);
@@ -93,10 +93,7 @@ public class MemberDAO {
                 pstmt.setString(4,name);
                 pstmt.setString(5,tel);
                 pstmt.setString(6,address);
-                pstmt.setInt(7,tableSet);
-                pstmt.setInt(8,takeoutSet);
-                pstmt.setInt(9,openTime);
-                pstmt.setInt(10,closeTime);
+                pstmt.setString(7,storetype);
                 
                 rs=pstmt.executeQuery();
                 
