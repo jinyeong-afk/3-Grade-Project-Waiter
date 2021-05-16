@@ -5,6 +5,10 @@
  */
 package DB;
 
+import static DB.ReservationDAO.conn;
+import static DB.ReservationDAO.pstmt;
+import static DB.ReservationDAO.rs;
+import static DB.ReservationDAO.stmt;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,20 +28,90 @@ public class StoreDAO{
     static  PreparedStatement pstmt = null;
     String sql;
     
-
-    
+    /**
+    * @메서드이름 : getMenuNameList 
+    * @작성날짜 : 21.05.15
+    * @용도 : 매개변수를 받은 id의 table 필드 menu를 string 배열로 반환한다..
+    * @author 허세진, 박성호
+    */
+       public ArrayList<String> getMenuNameList(String storename){
+        
+        ArrayList<String> list = new ArrayList<>();
+        
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("getMenuNameList 연결");
+            sql = "select menu_name from menu where store_name = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, storename);
+            
+            rs=pstmt.executeQuery();
+            String value = "";
+            while(rs.next()){
+                value = rs.getString(1);
+                list.add(value);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return list;
+    }
+    /**
+    * @메서드이름 : getPriceList 
+    * @작성날짜 : 21.05.15
+    * @용도 : 매개변수를 받은 id의 table 필드 price를 string 배열로 반환한다..
+    * @author 허세진, 박성호
+    */
+    public ArrayList<String> getPriceList(String storename){
+        
+        ArrayList<String> list = new ArrayList<>();
+        
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("getPriceList 연결");
+            sql = "select menu_value from menu where store_name = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, storename);
+            
+            rs=pstmt.executeQuery();
+            String value = "";
+            while(rs.next()){
+                value = rs.getString(1);
+                list.add(value);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return list;
+    }
+    /**
+    * @메서드이름 : ChangeStore 
+    * @작성날짜 : 21.05.15
+    * @용도 : store 테이블에서 매개변수를 받은 ID의를 검색해서 다른 매개변수들 값으로 DB를 수정한다. .
+    * @author 허세진
+    */
     public void ChangeStore(String ID, String storename, String storeaddress, String storetel, int open_time, int close_time, int Max){
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
-                System.out.println("연결"); 
+                System.out.println("ChangeStore 연결"); 
                 
                 sql = "UPDATE store SET storename = ?, storeaddress = ?, STORETELL= ?, open_time = ?, close_time = ?, MAX=? WHERE store_id ='"+ ID +"'";
                 
                 
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, storename);
-                pstmt.setString(2, storeaddress);
+                pstmt.setString(2, storeaddress);;
                 pstmt.setString(3, storetel);
                 pstmt.setInt(4, open_time);
                 pstmt.setInt(5, close_time);
@@ -54,11 +128,17 @@ public class StoreDAO{
                 System.out.println("DB 로드 실패");
             }
     }
-    public void signUpMenu(String store_name, String menu_name, int price){
+   /**
+    * @메서드이름 : signUpMenu 
+    * @작성날짜 : 21.05.15
+    * @용도 : menu 테이블에 매개변수로 받은 가게명, 메뉴명, 가격을 추가한다.  
+    * @author 허세진
+    */
+public void signUpMenu(String store_name, String menu_name, int price){
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
-                System.out.println("연결"); 
+                System.out.println("signUpMenu 연결"); 
                 
                 
                 sql = "insert into menu(store_name, menu_name, menu_value)";
@@ -81,12 +161,82 @@ public class StoreDAO{
                 System.out.println("DB 로드 실패");
             }
     }
-    
+    /**
+    * @메서드이름 : Modifymenu 
+    * @작성날짜 : 21.05.15
+    * @용도 : menu 테이블에 매개변수로 받은 가게명, 메뉴명, 가격을 수정한다.  
+    * @author 허세진
+    */
+    public void Modifymenu(String store_name, String menu_name, int price){
+            try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("Modifymenu 연결"); 
+              
+ 
+                sql = "UPDATE menu SET menu_value=? WHERE store_name = ? and menu_name= ?";
+                  
+                  
+                pstmt = conn.prepareStatement(sql);
+               
+                pstmt.setInt(1, price);
+                pstmt.setString(2, store_name);
+                pstmt.setString(3, menu_name);
+               
+               
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }
+    /**
+    * @메서드이름 : Delmenu 
+    * @작성날짜 : 21.05.15
+    * @용도 : 매개변수로 받은 가게이름과, 메뉴이름을 검사하고 거기에 맞는 menu 테이블 삭제.
+    * @author 허세진
+    */
+    public void Delmenu(String store_name, String menu_name){
+            try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("Delmenu 연결"); 
+              
+ 
+                sql = "delete from menu where store_name = ? and menu_name= ?";
+                  
+                  
+                pstmt = conn.prepareStatement(sql);
+             
+                pstmt.setString(1, store_name);
+                pstmt.setString(2, menu_name);
+               
+               
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }
+    /**
+    * @메서드이름 : signUpStore 
+    * @작성날짜 : 21.05.05
+    * @용도 : 매개변수로 받은 ID값을 store 테이블에서 검사해서 새로운 튜블을 생성한다.
+    * @author 허세진
+    */
     public void signUpStore(String ID,  String storetype, String storename, String storetel, String storeaddress, int open_time, int close_time, int max){
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
-                System.out.println("연결"); 
+                System.out.println("signUpStore 연결"); 
                 
                 sql = "insert into store(store_id, storename, storetell, storeaddress, open_time, close_time, max, storetype, permission)";
                 sql+= "values(?,?,?,?,?,?,?,?, 1)";
@@ -114,14 +264,20 @@ public class StoreDAO{
             }
     }
     
-    public boolean checkRegist(String id){
+    /**
+    * @메서드이름 : checkRegist 
+    * @작성날짜 : 21.05.03
+    * @용도 : member의 id값을 검사해서 있으면 true를 리턴하고 없으면 false를 리턴 
+    * @author 박성호
+    */
+public boolean checkRegist(String id){  
 	boolean check = false;
         
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
-            System.out.println("연결");
-            sql = "select * from member where id=?";
+            System.out.println("check Regist 연결");
+            sql = "select * from store where store_id=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,id);
             rs=pstmt.executeQuery();
@@ -135,14 +291,19 @@ public class StoreDAO{
             }
         return check;
 	}
-    
-    public ArrayList<String> getStringStoreInformaiton(String id) throws SQLException{
+    /**
+    * @메서드이름 : getStringStoreInformaiton 
+    * @작성날짜 : 21.05.03
+    * @용도 : 매개변수를 받은 id의 필드들을 string 배열로 저장하고 반환. 
+    * @author 박성호
+    */
+public ArrayList<String> getStringStoreInformaiton(String id) throws SQLException{
 
-        ArrayList<String> list = new ArrayList<>();
+     ArrayList<String> list = new ArrayList<>();
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
-            System.out.println("연결");
+            System.out.println(" getStringStoreInformaiton 연결");
             sql = "select * from store where store_id = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,id);
@@ -168,14 +329,19 @@ public class StoreDAO{
             }
         return list;
     }
-    
+    /**
+    * @메서드이름 : getIntStoreInformaiton 
+    * @작성날짜 : 21.05.03
+    * @용도 : 매개변수를 받은 id의 필드들을 int배열로 저장한다. 
+    * @author 박성호
+    */
         public ArrayList<Integer> getIntStoreInformaiton(String id) throws SQLException{
 
         ArrayList<Integer> list = new ArrayList<>();
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
-            System.out.println("연결");
+            System.out.println("getIntStoreInformaiton 연결");
             sql = "select * from store where store_id = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,id);
