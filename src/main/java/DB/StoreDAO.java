@@ -18,8 +18,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
- * @author sejin
+ * @사용용도 : StoreManagerMenuManageView GUI 컨트롤
+ * @author : 허세진
  */
 public class StoreDAO{
     static Connection conn;

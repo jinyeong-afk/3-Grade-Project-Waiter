@@ -53,9 +53,6 @@ public class StoreManagerMenuManageViewController implements Initializable{
     @FXML
     private ListView<String> list_price;
     @FXML
-    private Label label_name;
-
-    @FXML
     private TextField field_storename;
     @FXML
     private TextField field_storetel;
@@ -179,16 +176,29 @@ public class StoreManagerMenuManageViewController implements Initializable{
               btn_menu_registor.setOnMouseClicked(new EventHandler<MouseEvent>() {//메뉴 등록 버튼 클릭시 현재 매장 메뉴 등록
                 @Override
                 public void handle(MouseEvent event) {
-                System.out.println("메뉴 추가 됐냐"); 
+                System.out.println("메뉴 추가"); 
                      
                     if( !(field_registor_menuname.getText().equals("")
                         & !(field_registor_price.getText().equals(""))))
                        { 
-                            
                             sd.signUpMenu(field_storename.getText(), field_registor_menuname.getText(), Integer.parseInt(field_registor_price.getText()));
-                                                     
-                   
-                        }
+                             
+                            //메뉴 리스트박스에 현재 store의 메뉴 모두 출력
+                            MenuStoreList = FXCollections.observableArrayList();  // 배열화
+                            listStoreMenu = sd.getMenuNameList(field_storename.getText());
+                            for(int i=0; i<listStoreMenu.size(); i++){
+                                 MenuStoreList.add(listStoreMenu.get(i));
+                                 list_menuname.setItems(MenuStoreList);  
+                            }
+              
+                            //가격 리스트박스에 현재 store의 가격 모두 출력
+                            PriceStoreList = FXCollections.observableArrayList();  // 배열화
+                            listStorePrice = sd.getPriceList(field_storename.getText());
+                            for(int i=0; i<listStorePrice.size(); i++){
+                                 PriceStoreList.add(listStorePrice.get(i));
+                                 list_price.setItems(PriceStoreList);  
+                            }
+                       }
             }
         }
         );
@@ -201,11 +211,26 @@ public class StoreManagerMenuManageViewController implements Initializable{
                            String A=field_registor_menuname.getText(); 
                     if( !(field_registor_menuname.getText().equals("")
                         & !(field_registor_price.getText().equals(""))))
-                       { 
+                        { 
                                 System.out.println("메뉴 수정");
                                 sd.Modifymenu(field_storename.getText(), field_registor_menuname.getText(), Integer.parseInt(field_registor_price.getText()));
-         
-                    }
+                                //메뉴 리스트박스에 현재 store의 메뉴 모두 출력
+                                
+                                MenuStoreList = FXCollections.observableArrayList();  // 배열화
+                                listStoreMenu = sd.getMenuNameList(field_storename.getText());
+                                for(int i=0; i<listStoreMenu.size(); i++){
+                                       MenuStoreList.add(listStoreMenu.get(i));
+                                       list_menuname.setItems(MenuStoreList);  
+                                   }
+
+                                //가격 리스트박스에 현재 store의 가격 모두 출력
+                                PriceStoreList = FXCollections.observableArrayList();  // 배열화
+                                listStorePrice = sd.getPriceList(field_storename.getText());
+                                for(int i=0; i<listStorePrice.size(); i++){
+                                         PriceStoreList.add(listStorePrice.get(i));
+                                 list_price.setItems(PriceStoreList);  
+                                 }
+                        }
             }
         }
         );
@@ -219,11 +244,31 @@ public class StoreManagerMenuManageViewController implements Initializable{
                        { 
                                 System.out.println("메뉴 삭제");
                                 sd.Delmenu(field_storename.getText(), field_registor_menuname.getText());
-         
-                     }
-            }
-        }
-        );
-       
+                                
+                                MenuStoreList = FXCollections.observableArrayList();  // 배열화
+                                listStoreMenu = sd.getMenuNameList(field_storename.getText());
+                                for(int i=0; i<listStoreMenu.size(); i++){
+                                       MenuStoreList.add(listStoreMenu.get(i));
+                                       list_menuname.setItems(MenuStoreList);  
+                                   }
+
+                                //가격 리스트박스에 현재 store의 가격 모두 출력
+                                PriceStoreList = FXCollections.observableArrayList();  // 배열화
+                                listStorePrice = sd.getPriceList(field_storename.getText());
+                                for(int i=0; i<listStorePrice.size(); i++){
+                                         PriceStoreList.add(listStorePrice.get(i));
+                                list_price.setItems(PriceStoreList);  
+                                   }
+                        }
+                    }
+        });
+                list_menuname.setOnMouseClicked(new EventHandler<MouseEvent>() {  //리스트뷰 클릭 시 메뉴이름 텍스트박스에 출력
+                @Override
+                public void handle(MouseEvent event) {
+                Object obj = list_menuname.getSelectionModel().getSelectedItem();
+                field_registor_menuname.setText(obj.toString());
+                
+                }
+        });
     }
 }
