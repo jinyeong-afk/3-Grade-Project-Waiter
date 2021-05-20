@@ -9,7 +9,7 @@ package Src.StoreRegister;
  *
  * @author sejin
  */
-public class TakeoutStore extends StoreRegister{
+public class TakeoutStore extends Store{
     
     private String id;
     private String tabletype;
@@ -20,7 +20,7 @@ public class TakeoutStore extends StoreRegister{
     private int close_time;
     private int max_stock;   
     
-     public TakeoutStore(String id, String tabletype, String storename, String storeaddress, String storetel, int open_time,
+     public TakeoutStore(String id, String storename, String storeaddress, String storetel, int open_time,
       int close_time, int max_stock){
         this.id = id;
         this.tabletype = "takeout";
@@ -31,7 +31,8 @@ public class TakeoutStore extends StoreRegister{
         this.close_time = close_time;
         this.max_stock = max_stock;
     }
-        @Override
+    
+     @Override
     public String toString(){
     return "id : "+getid() + "/ type : "+getstoretype()+" address : "+getstoreaddress()+" tel :"+getstoretel()
             + " open_time: " +getopen_time()+ " close_time: " + getclose_time()+ " 재고 수: " + getmax();

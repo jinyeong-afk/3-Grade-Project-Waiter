@@ -9,17 +9,20 @@ package Src.StoreRegister;
  *
  * @author sejin
  */
-public class StoreFactory {
-    public static StoreRegister getStore(String id, String tabletype, String storename, String storeaddress, String storetel, int open_time,
-      int close_time, int max) {
-        
-       switch(tabletype){
+public class StoreFactory extends StoreRegister {
+
+    @Override
+    public Store createStore(String id, String tabletype, String storename, String storeaddress, String storetel,
+             int open_time, int close_time, int max) {
+        switch(tabletype){
         case "forhere":
-            return new TableStore( id,  storename,  storeaddress,  storetel,  open_time, close_time,  max);
+            return new TableStore(id,   storename,  storeaddress,  storetel,  open_time, close_time,  max);
         case "takeout":
-            return new TakeoutStore(id,  tabletype,  storename,  storeaddress,  storetel,  open_time, close_time,  max);
+            return new TakeoutStore(id,  storename,  storeaddress,  storetel,  open_time, close_time,  max);
         default : 
             return null;
-               }
-}
+        }
+    }
+
+   
 }
