@@ -8,6 +8,7 @@ package Controller;
 
 import DB.LoginDTO;
 import DB.StoreDAO;
+import Src.StoreRegister.Store;
 import Src.StoreRegister.StoreFactory;
 import Src.StoreRegister.StoreRegister;
 import java.net.URL;
@@ -73,6 +74,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
     
     private LoginDTO db = new LoginDTO();
     private StoreDAO sd = new StoreDAO();
+    StoreFactory sf = new StoreFactory();
     
     private ObservableList<String> MenuStoreList;
     private ObservableList<String> PriceStoreList;                    
@@ -83,7 +85,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
       
   
     
-  
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //로그인한 ID가 store에 없다면 
@@ -102,10 +104,11 @@ public class StoreManagerMenuManageViewController implements Initializable{
                     & !(field_open_time.getText().equals(""))))
                     {
                         //팩토리 메서드 패턴으로 매장 객체 생성
-                        StoreRegister store = StoreFactory.getStore(IntroViewController.getField, field_storetype.getText(), field_storename.getText(), 
-                        field_storeaddress.getText(),field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()), 
-                        Integer.parseInt(field_max.getText()));
-                        
+                        Store store;
+                        store = sf.createStore(IntroViewController.getField, field_storetype.getText(), field_storename.getText(), 
+                                field_storeaddress.getText(),field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()),
+                                Integer.parseInt(field_max.getText()));
+                         
                         //생성된 매장 객체를 DB에 저장
                         sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
                         store.getopen_time(), store.getclose_time(), store.getmax());
