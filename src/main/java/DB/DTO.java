@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -59,6 +60,20 @@ public class DTO {
         {
            return true;
         }
+    }
+    
+    static public ArrayList<Integer> getDBListPrice(String query, String getValue, String getValue2) throws SQLException { // DB에서 int 값을 arryalist로 가져오는 함수 @송진영
+        stmt = conn.createStatement();
+        rs = stmt.executeQuery(query);
+        int value = 0;
+        int value_2 = 0;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        while (rs.next()) {
+            value = rs.getInt(getValue);
+            value_2 = rs.getInt(getValue2);
+            list.add(value * value_2);
+        }
+        return list;
     }
     
     public static void loadDB() throws SQLException{ // DB를 불러오는 함수 @송진영
