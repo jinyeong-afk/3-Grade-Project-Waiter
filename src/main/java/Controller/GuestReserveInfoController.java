@@ -5,8 +5,13 @@
  */
 package Controller;
 
+import static Controller.IntroViewController.getField;
+import Src.ReservationConfirm_Observer.ReservationData;
+import Src.ReservationConfirm_Observer.WaitingNumberDisplay;
+import Src.ReservationConfirm_Observer.WaitingTimeDisplay;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,7 +35,7 @@ public class GuestReserveInfoController implements Initializable{
     @FXML
     private Button btn_reserveinfo_cancle;
     @FXML
-    private Label lable_waitperson;
+    private Label label_waitperson;
     @FXML
     private Label label_waittime;
     @FXML
@@ -42,6 +47,21 @@ public class GuestReserveInfoController implements Initializable{
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-  
+        ReservationData reservationInfo = new ReservationData();
+        WaitingNumberDisplay d2 = new WaitingNumberDisplay(reservationInfo);
+        WaitingTimeDisplay d3 = new WaitingTimeDisplay(reservationInfo);
+        
+        try {
+            reservationInfo.setReservation(IntroViewController.getField);
+        } catch (SQLException ex) {
+            Logger.getLogger(GuestReserveInfoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       String WaitingNumber = d2.display(getField).toString();
+       String WaitingTime = d3.display(getField).toString();
+
+       label_waitperson.setText(WaitingNumber);
+       label_waittime.setText(WaitingTime);
+        
     }
 }

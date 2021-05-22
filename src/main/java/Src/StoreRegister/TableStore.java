@@ -9,7 +9,7 @@ package Src.StoreRegister;
  *
  * @author sejin
  */
-public class TableStore extends StoreRegister {
+public class TableStore extends Store {
     
     private String id;
     private String tabletype;
@@ -21,7 +21,7 @@ public class TableStore extends StoreRegister {
     private int max_table;   
     
     public TableStore(String id, String storename, String storeaddress, String storetel, int open_time,
-      int close_time, int max_table){
+      int close_time, int max_stock){
         this.id = id;
         this.tabletype = "forHere";
         this.storename = storename;
@@ -30,7 +30,7 @@ public class TableStore extends StoreRegister {
         this.open_time = open_time;
         this.close_time = close_time;
         this.max_table = max_table;
-    }
+    }   
     
     @Override
     public String getid() { return this.id; };
@@ -49,5 +49,5 @@ public class TableStore extends StoreRegister {
     @Override
     public  int getmax(){ return this.max_table; };
     
-
+    
 }
