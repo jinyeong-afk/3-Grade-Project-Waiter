@@ -83,10 +83,9 @@ public class StoreOrderCheckViewController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-          ReservationData reservationInfo = new ReservationData();
+        ReservationData reservationInfo = new ReservationData();        
         //ReservationDisplay d1 = new ReservationDisplay(reservationInfo);
-        WaitingNumberDisplay d2 = new WaitingNumberDisplay(reservationInfo);
-        WaitingTimeDisplay d3 = new WaitingTimeDisplay(reservationInfo);
+
         TableDisplay d4 = new TableDisplay(reservationInfo);
         
         try {
@@ -270,8 +269,7 @@ public class StoreOrderCheckViewController implements Initializable{
             }
             }
          
-        );
-        
+        );        
     }
     public static void setWindow(String text) { // String 매개 변수를 받아 메시지창을 띄우는 함수
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
