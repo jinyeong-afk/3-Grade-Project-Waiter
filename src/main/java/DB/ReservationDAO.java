@@ -99,6 +99,68 @@ public class ReservationDAO {
         }
         return list;
     }
+      /**
+    * @메서드이름 : getStoreScore 
+    * @작성날짜 : 21.05.23
+    * @용도 : 가게 리뷰 등록 
+    * @author 허세진
+    */
+    public void signUpReview(String store_name, String guest_id, String review, int score){
+            try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("연결"); 
+                
+                sql = "insert into store_review(store_name, guest_id, review, score, review_count)";
+                sql+= "values(?,?,?,?,(SELECT COUNT(*)+1 from store_review where store_name=?))";
+                
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, store_name);
+                pstmt.setString(2, guest_id);
+                pstmt.setString(3, review);
+                pstmt.setInt(4, score);
+                pstmt.setString(5, store_name);
+                
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+
+            } 
+            catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }
+    public ArrayList<String> getGuestReviewName(String id){
+        
+         ArrayList<String> list = new ArrayList<>();
+         String value = "";
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("연결");
+            //sql = "select guest_id from guest where storename = ? ";
+            sql = "select DISTINCT storename from guest where guest_id = ? and pay_check = 1";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            
+            rs=pstmt.executeQuery();
+            
+            while(rs.next()){
+                value = rs.getString(1);
+                list.add(value);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return list;
+    }
     /**
      * @메서드이름 : getMenuNameList
      * @작성날짜 : 21.05.5
@@ -494,6 +556,110 @@ public class ReservationDAO {
         }
 
         return price;
+    }
+      /**
+    * @메서드이름 : getStoreScore 
+    * @작성날짜 : 21.05.23
+    * @용도 : 가게 리뷰 출력 
+    * @author 허세진
+    */
+       
+    public ArrayList<String> getStoreReview(String store_name){
+        
+         ArrayList<String> list = new ArrayList<>();
+         String value = "";
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("연결");
+            sql = "select review from store_review where store_name = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, store_name);
+            
+            rs=pstmt.executeQuery();
+            
+            while(rs.next()){
+                value = rs.getString(1);
+                list.add(value);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return list;
+    }
+    
+    /**
+     * @메서드이름 : PaycheckUpdate
+     * @작성날짜 : 21.05.25
+     * @용도 : Pay Check 값을 변경 한다..
+     * @author 허세진
+     */
+    public void PaycheckUpdate(String guest_id, String storename, int pay_check) {
+
+         try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("PaycheckUpdate 연결"); 
+              
+ 
+                sql = "UPDATE guest SET pay_check=? WHERE guest_id= ? and storename = ?";
+                  
+                  
+                pstmt = conn.prepareStatement(sql);
+               
+                pstmt.setString(2, guest_id);
+                pstmt.setString(3, storename);
+                pstmt.setInt(1, pay_check);
+                
+               
+               
+               
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }
+        /**
+    * @메서드이름 : getStoreScore 
+    * @작성날짜 : 21.05.23
+    * @용도 : 가게 평점 출력 
+    * @author 허세진
+    */
+    public ArrayList<String> getStoreScore(String store_name){
+        
+         ArrayList<String> list = new ArrayList<>();
+         String value = "";
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("연결");
+            sql = "select score from store_review where store_name = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, store_name);
+            
+            rs=pstmt.executeQuery();
+            
+            while(rs.next()){
+                value = Integer.toString(rs.getInt(1));
+                list.add(value);
+            }
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return list;
     }
     
     public int getStoreMaxTable(String id){

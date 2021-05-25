@@ -69,6 +69,8 @@ public class GuestReserveController implements Initializable {
     private TextField field_check_time;
     @FXML
     private Label label_totalprice;
+    @FXML
+    private ListView<String> list_showscore;
 
     private ObservableList<String> cStoreList;
     private ObservableList<String> MenuStoreList;
@@ -78,11 +80,14 @@ public class GuestReserveController implements Initializable {
     private ArrayList<String> listStoreName = new ArrayList<>();
     private ArrayList<String> listStoreInfo = new ArrayList<>();
     private ArrayList<String> listStoreMenu = new ArrayList<>();
+    private ArrayList<String> listStoreReview = new ArrayList<>();
+    private ArrayList<String> listStoreScore = new ArrayList<>();
     private ArrayList<String> listStorePrice = new ArrayList<>();
     private ArrayList<Integer> listStoreOperateTime = new ArrayList<>();
 
     private StoreDAO sd = new StoreDAO();
-
+    protected static String field_store;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -103,7 +108,23 @@ public class GuestReserveController implements Initializable {
                 field_storeinfo.setText(listStoreInfo.get(0));
                 field_storeinfo_address.setText(listStoreInfo.get(1));
                 field_storeinfo_tel.setText(listStoreInfo.get(2));
-
+                
+                
+                field_store= field_check_store.getText();
+                 cStoreList = FXCollections.observableArrayList();  // 배열화
+                 listStoreReview = rd.getStoreReview(field_check_store.getText());
+                for(int i=0; i<listStoreReview.size(); i++){
+                    cStoreList.add(listStoreReview.get(i));
+                 list_showreview.setItems(cStoreList);
+                }
+                 
+                cStoreList = FXCollections.observableArrayList();  // 배열화
+                listStoreScore = rd.getStoreScore(field_check_store.getText());
+                for(int i=0; i<listStoreScore.size(); i++){
+                  cStoreList.add(listStoreScore.get(i));
+                 list_showscore.setItems(cStoreList);
+                }
+                
                 listStoreOperateTime = rd.getStoreOperatertime(field_storeinfo.getText());
                 choice_time.getItems().removeAll(choice_time.getItems());
                 for (int i = listStoreOperateTime.get(0); i < listStoreOperateTime.get(1); i++) {
@@ -128,6 +149,8 @@ public class GuestReserveController implements Initializable {
                     PriceStoreList.add(listStorePrice.get(i));
                     list_price.setItems(PriceStoreList);
                 }
+                
+                
             }
         });
 
