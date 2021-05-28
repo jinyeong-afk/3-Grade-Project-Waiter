@@ -6,6 +6,7 @@
 package Controller;
 
 import static Controller.IntroViewController.getField;
+import DB.ReservationDAO;
 import Src.ReservationConfirm_Observer.ReservationData;
 import Src.ReservationConfirm_Observer.WaitingNumberDisplay;
 import Src.ReservationConfirm_Observer.WaitingTimeDisplay;
@@ -25,6 +26,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  *
@@ -39,14 +48,34 @@ public class GuestReserveInfoController implements Initializable{
     @FXML
     private Label label_waittime;
     @FXML
+    private Label label_store;
+    @FXML
+    private Label label_date;
+    @FXML
+    private Label label_time;
+    @FXML
     private TextField field_reserveinfo;
     @FXML
     private ListView list_reservationmenu;
-     
-     
-    
+         
+    private ObservableList<String> cStoreList;
+    private ArrayList<String> ReservationMenu = new ArrayList<>();
+    private ReservationDAO rd = new ReservationDAO();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        cStoreList = FXCollections.observableArrayList();  // 배열화
+        label_store.setText(rd.getReserveStoreName(IntroViewController.getField));
+        label_date.setText(rd.getReserveDate(IntroViewController.getField));
+        label_time.setText(Integer.toString(rd.getReserveTime(IntroViewController.getField))+"시 예약입니다");
+        
+        
+        ReservationMenu = rd.getReservemenu(IntroViewController.getField, "menu");
+        for(int i = 0; i<ReservationMenu.size(); i++){
+            cStoreList.add(ReservationMenu.get(i));
+            list_reservationmenu.setItems(cStoreList);
+        }
+        
         ReservationData reservationInfo = new ReservationData();
         WaitingNumberDisplay d2 = new WaitingNumberDisplay(reservationInfo);
         WaitingTimeDisplay d3 = new WaitingTimeDisplay(reservationInfo);
@@ -63,5 +92,8 @@ public class GuestReserveInfoController implements Initializable{
        label_waitperson.setText(WaitingNumber);
        label_waittime.setText(WaitingTime);
         
+       
     }
 }
+
+

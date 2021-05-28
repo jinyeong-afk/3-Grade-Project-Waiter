@@ -8,6 +8,7 @@ package Controller;
 import static Controller.IntroViewController.getField;
 import DB.DTO;
 import DB.LoginDTO;
+import DB.ReservationDAO;
 import Src.Payment_Command_Memento_Pattern.AddAmountCommand;
 import Src.Payment_Command_Memento_Pattern.CareTaker;
 import Src.Payment_Command_Memento_Pattern.Client;
@@ -66,7 +67,11 @@ public class StoreOrderCheckViewController implements Initializable{
     @FXML
     private TextField field_table_check;
     private ObservableList<String> cGuestList;
-    
+    private ObservableList<String> cReserveMenuAmountList;
+    private ObservableList<String> cReserveMenuList;
+    private ReservationDAO rd = new ReservationDAO();
+    private ArrayList<String> ReservationMenu = new ArrayList<>();
+    private ArrayList<String> ReserveMenuAmount = new ArrayList<>();
     LoginDTO LD = new LoginDTO();
         String allprice_query, allprice_value, allprice_value2, id;
         String store_name = "";
@@ -119,7 +124,18 @@ public class StoreOrderCheckViewController implements Initializable{
                          Logger.getLogger(StoreOrderCheckViewController.class.getName()).log(Level.SEVERE, null, ex);
                     }
             String tableID =  field_table_check.getText();
-
+           cReserveMenuList = FXCollections.observableArrayList();  // 배열화
+           cReserveMenuAmountList = FXCollections.observableArrayList();  // 배열화
+            ReservationMenu = rd.getReservemenu(field_table_check.getText(), "menu");
+                for(int i = 0; i<ReservationMenu.size(); i++){ 
+                    cReserveMenuList.add(ReservationMenu.get(i));
+                    list_menuname.setItems(cReserveMenuList);
+                }
+                ReserveMenuAmount = rd.getReservemenu(field_table_check.getText(), "amount");
+                for(int i = 0; i<ReserveMenuAmount.size(); i++){ 
+                    cReserveMenuAmountList.add(ReserveMenuAmount.get(i));
+                    list_price.setItems(cReserveMenuAmountList);
+                }
             client.setID(tableID);
             String store_query = "select * from store where store_id = '" + store_id + "'";
             String store_value = "storename";

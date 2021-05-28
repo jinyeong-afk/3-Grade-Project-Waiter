@@ -83,6 +83,8 @@ public class GuestReviewController implements Initializable{
             cStoreList.add(listStoreName.get(i));
         }
             list_reviewstorename.setItems(cStoreList);
+              
+  
         
         
     StoreScore.selectedToggleProperty().addListener(new ChangeListener<Toggle>()
@@ -102,7 +104,7 @@ public class GuestReviewController implements Initializable{
                
                Review= textarea1_review.getText();
                rd.signUpReview(label_reviewstorename.getText(), IntroViewController.getField,  Review, score);
-               rd.PaycheckUpdate(IntroViewController.getField, label_reviewstorename.getText(), 2);
+               rd.PaycheckDel(IntroViewController.getField, label_reviewstorename.getText());
                
                cStoreList = FXCollections.observableArrayList();  // 배열화
                listStoreName = rd.getGuestReviewName(IntroViewController.getField);
