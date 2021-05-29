@@ -46,7 +46,7 @@
       <TextField fx:id="field_storetel" layoutX="278.0" layoutY="87.0" prefHeight="26.0" prefWidth="256.0" promptText="가게 연락처" stylesheets="@../styles/textfield.css" />
       <TextField fx:id="field_storeaddress" layoutX="277.0" layoutY="124.0" prefHeight="26.0" prefWidth="256.0" promptText="가게 주소" stylesheets="@../styles/textfield.css" />
       <TextField fx:id="field_storetable" layoutX="278.0" layoutY="162.0" prefHeight="26.0" prefWidth="256.0" promptText="테이블 수(오프라인)" stylesheets="@../styles/textfield.css" />
-      <TextField fx:id="field_storetable1" layoutX="278.0" layoutY="205.0" prefHeight="26.0" prefWidth="256.0" promptText="재고 수 (Only Take Out)" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="field_stock" layoutX="278.0" layoutY="205.0" prefHeight="26.0" prefWidth="256.0" promptText="재고 수 (Only Take Out)" stylesheets="@../styles/textfield.css" />
       <TextField fx:id="field_open_time" layoutX="277.0" layoutY="239.0" prefHeight="26.0" prefWidth="256.0" promptText="오픈 시간" stylesheets="@../styles/textfield.css" />
       <TextField fx:id="field_end_time" layoutX="277.0" layoutY="275.0" prefHeight="26.0" prefWidth="256.0" promptText="마감시간" stylesheets="@../styles/textfield.css" />
    </children>
