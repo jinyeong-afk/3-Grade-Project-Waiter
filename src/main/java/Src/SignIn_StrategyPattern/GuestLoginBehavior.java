@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author user
+ * @author 박성호
  */
 public class GuestLoginBehavior implements LoginBehavior { //게스트 화면으로 넘겨주기
 

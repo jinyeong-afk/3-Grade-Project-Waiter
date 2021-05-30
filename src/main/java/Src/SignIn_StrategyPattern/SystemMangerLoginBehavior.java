@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author user
+ * @author 박성호
  */
 public class SystemMangerLoginBehavior implements LoginBehavior{//시스템 매니저 화면으로 넘겨주기
 

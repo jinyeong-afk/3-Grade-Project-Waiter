@@ -81,7 +81,7 @@ public class AdminPermissionController implements Initializable{
        
         //가게 이름 배열에 값 넣음
         cStoreList = FXCollections.observableArrayList();  // 배열화
-        listStoreName = rd.getStoreNameList();
+        listStoreName = rd.getStoreNameList(0);
         for(int i=0; i<listStoreName.size(); i++){
             cStoreList.add(listStoreName.get(i));
             list_permissionstore.setItems(cStoreList);

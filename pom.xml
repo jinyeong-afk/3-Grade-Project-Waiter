@@ -17,5 +17,5 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-    <name>TEAM02_06_5.25</name>
+    <name>Waiter</name>
 </project>

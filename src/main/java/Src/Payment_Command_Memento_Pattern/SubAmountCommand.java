@@ -9,7 +9,7 @@ import Src.Payment_Command_Memento_Pattern.Client;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class SubAmountCommand implements PaymentCommand { // 먹은 음식 값에서 지불 금액을 빼는 커맨드
     public int amountPaid, amountNotPaid;

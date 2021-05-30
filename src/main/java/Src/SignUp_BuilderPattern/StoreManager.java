@@ -7,7 +7,7 @@ package Src.SignUp_BuilderPattern;
 
 /**
  *
- * @author qwe98
+ * @author 박성호
  */
 public class StoreManager extends Member{
     

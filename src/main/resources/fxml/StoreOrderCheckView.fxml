@@ -16,7 +16,7 @@
          </font>
       </Label>
       <ListView fx:id="list_now_table" layoutX="49.0" layoutY="89.0" prefHeight="327.0" prefWidth="200.0" />
-      <Label layoutX="113.0" layoutY="69.0" prefHeight="14.0" prefWidth="65.0" text="현재 테이블" />
+      <Label layoutX="110.0" layoutY="68.0" prefHeight="14.0" prefWidth="78.0" text="현재 손님 목록" />
       <Separator layoutX="267.0" layoutY="20.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
       <TextField fx:id="field_table_check" layoutX="50.0" layoutY="424.0" prefHeight="26.0" prefWidth="155.0" promptText="조회할 테이블 입력" stylesheets="@../styles/textfield.css" />
       <Button fx:id="btn_table_check" layoutX="207.0" layoutY="428.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="46.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="조회" textFill="WHITE" />

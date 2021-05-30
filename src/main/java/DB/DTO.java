@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class DTO {
     static public Connection conn;

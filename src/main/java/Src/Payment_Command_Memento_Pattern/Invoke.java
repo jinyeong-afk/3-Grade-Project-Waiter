@@ -7,7 +7,7 @@ package Src.Payment_Command_Memento_Pattern;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class Invoke { // 커맨드를 넘겨받아서 실행할 커맨드를 지정해준다
     public PaymentCommand command;
