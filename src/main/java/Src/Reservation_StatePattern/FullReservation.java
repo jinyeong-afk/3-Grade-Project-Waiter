@@ -10,7 +10,7 @@ import java.sql.Date;
 
 /**
  *
- * @author qwe98
+ * @author 박성호
  */
 public class FullReservation implements ReservationState{
     

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author GGuPro
+ * @author 이규철
  */
 public class WaitingTimeDisplay implements Observer, DisplayElement {
 

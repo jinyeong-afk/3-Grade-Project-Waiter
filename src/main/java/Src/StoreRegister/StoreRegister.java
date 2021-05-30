@@ -7,7 +7,7 @@ package Src.StoreRegister;
 
 /**
  *
- * @author sejin
+ * @author 허세진
  */
 public abstract class StoreRegister {
 

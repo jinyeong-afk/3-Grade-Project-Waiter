@@ -13,6 +13,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ *
+ * @author 박성호
+ */
+
 public interface LoginBehavior {
     
     public int login(String id, String pw);

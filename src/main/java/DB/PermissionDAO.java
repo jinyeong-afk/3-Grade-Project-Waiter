@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author SAMSUNG
+ * @author 박경민
  */
 public class PermissionDAO {
     static Connection conn;

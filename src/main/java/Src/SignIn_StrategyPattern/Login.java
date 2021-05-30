@@ -7,7 +7,7 @@ package Src.SignIn_StrategyPattern;
 
 /**
  *
- * @author qwe98
+ * @author 박성호
  */
 public class Login {
     

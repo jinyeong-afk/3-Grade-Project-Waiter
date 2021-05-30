@@ -7,7 +7,7 @@ package Src.Payment_Command_Memento_Pattern;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class PaymentMemento {
     static int AmountPaid_2; // 결제된 금액

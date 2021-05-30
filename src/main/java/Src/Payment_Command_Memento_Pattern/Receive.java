@@ -7,7 +7,7 @@ package Src.Payment_Command_Memento_Pattern;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class Receive{ // 요구 사항을 수행한다
     String receive;

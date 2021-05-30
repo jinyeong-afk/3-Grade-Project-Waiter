@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author qwe98
+ * @author 박성호
  */
 public class PossibleReservation implements ReservationState{
   

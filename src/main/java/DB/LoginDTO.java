@@ -18,7 +18,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author qwe98
+ * @author 박성호
  */
 public class LoginDTO {
     

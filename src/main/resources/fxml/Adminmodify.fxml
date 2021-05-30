@@ -15,7 +15,7 @@
       <TextField fx:id="field_modifyID" layoutX="603.0" layoutY="70.0" promptText="변경할 ID입력" />
       <TextField fx:id="field_modifyPW" layoutX="603.0" layoutY="100.0" promptText="변경할 패스워드 입력" />
       <TextField fx:id="feld_modifyPWcheck" layoutX="603.0" layoutY="130.0" promptText="패스워드 확인" />
-      <Button fx:id="btn_adminmodify" layoutX="484.0" layoutY="207.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="133.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="수정" textFill="WHITE" />
+      <Button fx:id="btn_adminmodify" layoutX="480.0" layoutY="168.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="98.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="수정" textFill="WHITE" />
       <Label fx:id="admintext1" layoutX="23.0" layoutY="25.0" prefHeight="31.0" prefWidth="73.0" text="Guest">
          <font>
             <Font size="22.0" />
@@ -48,6 +48,13 @@
       </Label>
       <Separator layoutX="461.0" layoutY="9.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
       <Separator layoutX="226.0" layoutY="9.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" rotate="90.0" />
-      <Button fx:id="btn_admindelete" layoutX="631.0" layoutY="207.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="133.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="삭제" textFill="WHITE" />
+      <Button fx:id="btn_admindelete" layoutX="582.0" layoutY="168.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="98.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="사용자 삭제" textFill="WHITE" />
+      <Button fx:id="btn_addblacklist" layoutX="684.0" layoutY="168.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="110.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="블랙리스트 추가" textFill="WHITE" />
+      <ListView fx:id="list_blacklist" layoutX="471.0" layoutY="277.0" prefHeight="162.0" prefWidth="330.0" />
+      <Label fx:id="admintext112" layoutX="471.0" layoutY="246.0" prefHeight="31.0" prefWidth="145.0" text="BlackList">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

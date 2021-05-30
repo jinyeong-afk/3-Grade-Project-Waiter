@@ -172,7 +172,7 @@ public class GuestReserveController implements Initializable {
                 if (click.getClickCount() == 2) {
                     Object obj = list_menuname.getSelectionModel().getSelectedItem();
                     OderCheckList.add(obj.toString());
-                    System.out.println(obj.toString());
+//                    System.out.println(obj.toString());
                     list_ordercheck.setItems(OderCheckList);
                 }
             }

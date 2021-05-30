@@ -7,7 +7,7 @@ package Src.ReservationConfirm_Observer;
 
 /**
  *
- * @author GGuPro
+ * @author 이규철
  */
 public class WaitingNumber {
     //private String date;

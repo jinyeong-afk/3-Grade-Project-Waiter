@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author user
+ * @author 박성호
  */
 public class StoreManagerLoginBehavior implements LoginBehavior {//매장 관리자 화면으로 넘겨주기
 

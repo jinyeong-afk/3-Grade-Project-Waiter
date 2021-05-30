@@ -7,7 +7,7 @@ package Src.Payment_Command_Memento_Pattern;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class PayCommand implements PaymentCommand { // 결제 시작할 때 커맨드
     public Receive receive;

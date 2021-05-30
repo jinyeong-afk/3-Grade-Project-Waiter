@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="guestreserve_stage" prefHeight="475.0" prefWidth="814.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GuestReserveController">
    <children>
-      <Text layoutX="44.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장" wrappingWidth="95.66666603088379">
+      <Text layoutX="16.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장" wrappingWidth="95.66666603088379">
          <font>
             <Font size="22.0" />
          </font>
@@ -22,7 +22,7 @@
       <Button fx:id="btn_guestreserve_check" layoutX="180.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="확인" textFill="WHITE" />
       <TextField fx:id="field_check_store" layoutX="16.0" layoutY="425.0" prefHeight="36.0" prefWidth="152.0" stylesheets="@../styles/textfield.css" />
       <ListView fx:id="list_showreview" layoutX="283.0" layoutY="122.0" prefHeight="82.0" prefWidth="212.0" />
-      <Text layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 정보" wrappingWidth="134.9830722808838">
+      <Text layoutX="283.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 정보" wrappingWidth="134.9830722808838">
          <font>
             <Font size="22.0" />
          </font>
@@ -32,36 +32,26 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="309.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 메뉴" wrappingWidth="134.9830722808838">
+      <Text layoutX="283.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="매장 메뉴" wrappingWidth="134.9830722808838">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Button fx:id="btn_guest_menuorder" layoutX="727.0" layoutY="425.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="주문하기" textFill="WHITE" />
-      <Label layoutX="595.0" layoutY="431.0" text="총">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <Button fx:id="btn_guest_menuorder" layoutX="555.0" layoutY="431.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="246.0" style="-fx-background-color: rgb(0,153,255);" stylesheets="@../styles/button.css" text="주문하기" textFill="WHITE" />
       <Label fx:id="label_totalprice" layoutX="620.0" layoutY="431.0" prefHeight="24.0" prefWidth="84.0" visible="false">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Text layoutX="570.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="장바 구니" wrappingWidth="134.9830722808838">
+      <Text layoutX="553.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="장바 구니" wrappingWidth="134.9830722808838">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Label layoutX="705.0" layoutY="431.0" text="원">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Separator layoutX="266.0" layoutY="15.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
       <Separator layoutX="539.0" layoutY="15.0" orientation="VERTICAL" prefHeight="458.0" prefWidth="0.0" />
       <ListView fx:id="list_menuname" layoutX="283.0" layoutY="271.0" prefHeight="168.0" prefWidth="162.0" />
-      <ListView fx:id="list_ordercheck" layoutX="554.0" layoutY="121.0" prefHeight="181.0" prefWidth="246.0" />
+      <ListView fx:id="list_ordercheck" layoutX="554.0" layoutY="121.0" prefHeight="302.0" prefWidth="246.0" />
       <TextField fx:id="field_storeinfo" editable="false" layoutX="283.0" layoutY="36.0" prefHeight="23.0" prefWidth="96.0" promptText="가게 이름" stylesheets="@../styles/textfield.css" />
       <TextField fx:id="field_storeinfo_tel" editable="false" layoutX="384.0" layoutY="36.0" prefHeight="23.0" prefWidth="145.0" promptText="전화번호" stylesheets="@../styles/textfield.css" />
       <TextField fx:id="field_storeinfo_address" editable="false" layoutX="284.0" layoutY="65.0" prefHeight="23.0" prefWidth="246.0" promptText="가게 주소" stylesheets="@../styles/textfield.css" />

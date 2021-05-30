@@ -9,7 +9,7 @@ import java.util.Stack;
 
 /**
  *
- * @author jin
+ * @author 송진영
  */
 public class CareTaker {
     static Stack<PaymentMemento> mementos = new Stack<>(); //PaymentMemento 관리를 위한 Stack
