@@ -7,14 +7,14 @@ package Controller;
 
 import DB.DTO;
 import DB.MemberDAO;
-import Src.SignUp_BuilderPattern.Guest;
-import Src.SignUp_BuilderPattern.Member;
-import Src.SignUp_BuilderPattern.MemberType;
-import Src.SignUp_BuilderPattern.SignUpBuilder;
+import Src.SignUp_BuilderPattern.GuestBuilder;
+import Src.SignUp_BuilderPattern.SignUpProduct;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar.Builder;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,7 +59,6 @@ public class GuestSignUpController implements Initializable {
     private TextField field_signupmoney;
 
     int check_id = 0; // id 체크를 위해 사용, 1인경우는 중복된 아이디가 있다.
-    ArrayList<Guest> guest_list = new ArrayList<Guest>();
     MemberDAO md = new MemberDAO();
 
     @Override
@@ -90,18 +89,20 @@ public class GuestSignUpController implements Initializable {
                         & !(field_signupadress.getText().equals(""))
                         & !(field_signuptel.getText().equals(""))
                         & !(field_signupmoney.getText().equals(""))) {
-                    Member member = new SignUpBuilder() // builder 패턴을 적용한 소스코드를 통한 회원가입 
-                            .setIdx(1)
-                            .setId(field_signupid.getText())
-                            .setPw(field_signuppw.getText())
-                            .setName(field_signupname.getText())
-                            .setTel(field_signuptel.getText())
-                            .setAddress(field_signupadress.getText())
-                            .setBalance(Integer.parseInt(field_signupmoney.getText()))
-                            .build(MemberType.GUEST);
-                    md.signUpGuest(member.getIdx(), member.getId(), member.getPw(), member.getName(), member.getTel(), member.getAddress(), member.getBalance());
+                   SignUpProduct guestBuilder= new GuestBuilder()
+                             .setBalance(Integer.parseInt(field_signupmoney.getText()))
+                             .setIdx(1)
+                             .setId(field_signupid.getText())
+                             .setPw(field_signuppw.getText())
+                             .setName(field_signupname.getText())
+                             .setTel(field_signuptel.getText())
+                             .setAddress(field_signupadress.getText())
+                             .build();
+                    guestBuilder.SignUpGuest(1);
                     System.out.println("회원가입이 완료되었습니다.");
 
+                                    
+                    setWindow("회원가입이 완료되었습니다.");
                     Stage stage = (Stage) btn_goback.getScene().getWindow();
                     Parent main = null;
 
@@ -114,8 +115,6 @@ public class GuestSignUpController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 }
-                
-                    setWindow("회원가입이 완료되었습니다.");
             }
         }
         );
