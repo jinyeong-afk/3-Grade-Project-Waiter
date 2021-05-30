@@ -7,11 +7,15 @@ package Src.StoreRegister;
 
 /**
  *
- * @author 허세진
+ * @author sejin
  */
 public abstract class StoreRegister {
 
-    public abstract Store createStore(String id, String tabletype, String storename, String storeaddress, String storetel, int open_time,
-      int close_time, int max);
+    protected abstract Store createStore(String id, String type);
+    public Store RegisterStore(String id, String type){
+        Store new_store = createStore(id, type);
+        System.out.println("매장 생성");
+        return new_store;
+    }
 
 }

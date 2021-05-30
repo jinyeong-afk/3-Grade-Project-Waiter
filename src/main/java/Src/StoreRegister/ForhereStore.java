@@ -9,20 +9,20 @@ package Src.StoreRegister;
  *
  * @author sejin
  */
-public class TakeoutStore extends StoreRegister{
+public class ForhereStore extends StoreRegister{
     
 
     @Override
-    protected Store createStore(String id, String type) {
+    public Store createStore(String id, String type) {
         switch(type){
             case "Coffee":
-                return new TakeoutCoffeeStore(id);
+                System.out.println("forhere 커피 생성");
+                return new ForhereCoffeeStore(id);
             case "Bakery":
-                return new TakeoutbakeryStore(id);
+                return new ForherebakeryStore(id);
             default : 
                 return null;
             }
     }
-   
-   
+    
 }

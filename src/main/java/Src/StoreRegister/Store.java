@@ -7,17 +7,37 @@ package Src.StoreRegister;
 
 /**
  *
- * @author 허세진
+ * @author sejin
  */
 public abstract class Store {
+    protected String id;
+    protected String tabletype;
+    protected String storename;
+    protected String storeaddress;
+    protected String storetel; 
+    protected int open_time;
+    protected int close_time;
+    protected int max;   
     
-    public abstract String getid();
-    public abstract String getstoretype();
-    public abstract String getstoreaddress();
-    public abstract String getstoretel();
-    public abstract int getopen_time();
-    public abstract int getclose_time();
-    public abstract int getmax();
-    public abstract String getstorename();
+   
+    public String getid() { return this.id; };
+
+    public String getstorename() { return this.storename; };
+  
+    public  String getstoretype() { return this.tabletype; };
+ 
+    public  String getstoreaddress(){ return this.storeaddress; };
+  
+    public  String getstoretel(){ return this.storetel; };
+   
+    public  int getopen_time(){ return this.open_time; };
+  
+    public  int getclose_time(){ return this.close_time; };
+   
+    public  int getmax(){ return this.max; };
+    
+    public void prepare() {
+    System.out.print("테이블 셋팅 완료");
+    };
     
 }

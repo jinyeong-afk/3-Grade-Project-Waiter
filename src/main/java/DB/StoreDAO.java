@@ -127,7 +127,28 @@ public class StoreDAO{
                 e.printStackTrace();
                 System.out.println("DB 로드 실패");
             }
-    }
+    }  
+    public boolean checkforhere (String id){  
+	boolean check = false;
+        
+        try{
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("checkforhere 연결");
+            sql = "select * from member where id=? and storetype = 'forhere'";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,id);
+            rs=pstmt.executeQuery();
+            check = rs.next();
+            if(rs != null) rs.close();
+            if(stmt != null) stmt.close();
+            if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+        return check;
+	}
    /**
     * @메서드이름 : signUpMenu 
     * @작성날짜 : 21.05.15

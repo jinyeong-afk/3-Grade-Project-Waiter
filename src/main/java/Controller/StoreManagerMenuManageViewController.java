@@ -8,15 +8,19 @@ package Controller;
 
 import DB.LoginDTO;
 import DB.StoreDAO;
+import Src.StoreRegister.ForhereStore;
 import Src.StoreRegister.Store;
-import Src.StoreRegister.StoreFactory;
 import Src.StoreRegister.StoreRegister;
+import Src.StoreRegister.TakeoutStore;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -28,10 +32,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 
 /**
  *
@@ -71,19 +79,26 @@ public class StoreManagerMenuManageViewController implements Initializable{
     private TextField field_registor_menuname;
     @FXML
     private TextField field_registor_price;
+    @FXML
+    private RadioButton radio_coffee;
+    @FXML
+    private RadioButton radio_bakery;
+    @FXML
+    private ToggleGroup storetitle;
+   
     
     private LoginDTO db = new LoginDTO();
     private StoreDAO sd = new StoreDAO();
-    StoreFactory sf = new StoreFactory();
-    
     private ObservableList<String> MenuStoreList;
     private ObservableList<String> PriceStoreList;                    
-    private ArrayList<String> stringStoreList = new ArrayList<>();    // 가게 정보 출력 : String  (가게이름, 가게, 가게타입, 가게연락처 )
-    private ArrayList<Integer> IntegerStoreList = new ArrayList<>();  // 가게 정보 출력 : Integer (오픈시간, 마감시간, 최대 테이블 수(재고 수))
-    private ArrayList<String> listStoreMenu = new ArrayList<>();      // 가게 메뉴 출력 : String  (메뉴이름)
-    private ArrayList<String> listStorePrice = new ArrayList<>();     // 가게 가격 출력 : String  (가격)
-      
-  
+    private List<String> stringStoreList = new ArrayList<>();    // 가게 정보 출력 : String  (가게이름, 가게, 가게타입, 가게연락처 )
+    private List<Integer> IntegerStoreList = new ArrayList<>();  // 가게 정보 출력 : Integer (오픈시간, 마감시간, 최대 테이블 수(재고 수))
+    private List<String> listStoreMenu = new ArrayList<>();      // 가게 메뉴 출력 : String  (메뉴이름)
+    private List<String> listStorePrice = new ArrayList<>();     // 가게 가격 출력 : String  (가격)
+    StoreRegister Takeout = new TakeoutStore();
+    StoreRegister Forhere = new ForhereStore();
+    String store_type;
+   
     
     
     @Override
@@ -93,36 +108,66 @@ public class StoreManagerMenuManageViewController implements Initializable{
             btn_store_modify.setVisible(false); //수정 버튼은 사라진다
             btn_store_register.setOnMouseClicked(new EventHandler<MouseEvent>() { //마우스 등록버튼 클릭시 발생 이벤트 현재 매장 정보 등록
                 @Override
-                public void handle(MouseEvent event) { //유효성 검사
-                    if( !(field_end_time.getText().equals("")
-                    & !(field_storename.getText().equals(""))
-                    & !(field_storetel.getText().equals(""))
-                    & !(field_storeaddress.getText().equals(""))
-                    & !(field_max.getText().equals(""))
-                    & !(field_storetype.getText().equals(""))
-                    & !(field_storetype.getText().equalsIgnoreCase("forhere") || field_storetype.getText().equalsIgnoreCase("takeout"))
-                    & !(field_open_time.getText().equals(""))))
-                    {
-                        //팩토리 메서드 패턴으로 매장 객체 생성
-                        Store store;
-                        store = sf.createStore(IntroViewController.getField, field_storetype.getText(), field_storename.getText(), 
-                                field_storeaddress.getText(),field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()),
-                                Integer.parseInt(field_max.getText()));
-                         
-                        //생성된 매장 객체를 DB에 저장
-                        sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
-                        store.getopen_time(), store.getclose_time(), store.getmax());
-                        
-                        System.out.println("매장 객체 생성");
+                public void handle(MouseEvent event) { 
+                      Store store; 
+                    radio_coffee.setVisible(false); 
+                    radio_bakery.setVisible(false); //라디오 버튼은 사라진다
+                    btn_store_register.setVisible(false); //가게 등록 버튼은 사라진다
+                        if(sd.checkforhere(IntroViewController.getField)){
+                              
+                                System.out.println(store_type);
+                                store = Forhere.RegisterStore(IntroViewController.getField, store_type);
+
+                                sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
+                                 store.getopen_time(), store.getclose_time(), store.getmax());
+                                  btn_store_modify.setVisible(true); //수정 버튼 생김
+                                try {
+                                    stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
+                                    IntegerStoreList = sd.getIntStoreInformaiton(IntroViewController.getField);   
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+
+                                  
+
+                        }
+                        else{
+                             
+                                store = Takeout.RegisterStore(IntroViewController.getField, store_type);           
+
+                                sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
+                                store.getopen_time(), store.getclose_time(), store.getmax());
+                                  btn_store_modify.setVisible(true); //수정 버튼 생김
+                                try {
+                                    stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
+                                    IntegerStoreList = sd.getIntStoreInformaiton(IntroViewController.getField);   
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+
+                            
+                        }
+                        field_storename.setText(stringStoreList.get(0));
+                        field_storeaddress.setText(stringStoreList.get(1));
+                        field_storetel.setText(stringStoreList.get(2));
+                        field_open_time.setText(Integer.toString(IntegerStoreList.get(0)));
+                        field_end_time.setText(Integer.toString(IntegerStoreList.get(1)));
+                        field_max.setText(Integer.toString(IntegerStoreList.get(2)));
+                        field_storetype.setText(stringStoreList.get(3));
                     }
-                }
+               
+                } );
             }
-        );} 
+       
+    
         else{//로그인한 ID가 store에 있으면
             try {
                 stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
                 IntegerStoreList = sd.getIntStoreInformaiton(IntroViewController.getField);                
-                btn_store_register.setVisible(false); //등록버튼 사라짐
+                radio_coffee.setVisible(false); 
+                radio_bakery.setVisible(false); //라디오 버튼은 사라진다
+                btn_store_register.setVisible(false); //가게 등록 버튼은 사라진다
+                
             } catch (SQLException ex) {
                 Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -176,6 +221,15 @@ public class StoreManagerMenuManageViewController implements Initializable{
             }
         }
         );
+            storetitle.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+                @Override
+                public void changed(ObservableValue<? extends Toggle> ov, Toggle t, Toggle t1)
+                    {
+                    RadioButton chk = (RadioButton)t1.getToggleGroup().getSelectedToggle(); // Cast object to radio button
+                    store_type = chk.getText();
+
+                    }
+             });
               btn_menu_registor.setOnMouseClicked(new EventHandler<MouseEvent>() {//메뉴 등록 버튼 클릭시 현재 매장 메뉴 등록
                 @Override
                 public void handle(MouseEvent event) {

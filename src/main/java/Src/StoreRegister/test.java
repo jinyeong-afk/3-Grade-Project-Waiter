@@ -7,19 +7,32 @@ package Src.StoreRegister;
 
 /**
  *
- * @author 허세진
+ * @author sejin
  */
 public class test {
     
       public static void main(String[] args) {
-              
-        StoreFactory sf = new StoreFactory();
-		
-        Store table = sf.createStore("asd123", "forhere", "김밥집", "부산시 사하구", "0105215231", 9, 18, 30);
-        Store takeout =  sf.createStore("qwe345", "takeout", "빵집", "부산시 남구", "01099997777", 9, 18, 1000);
-      
-        System.out.println("Factory table::" + table.getstorename());
-        System.out.println("Factory takeout::" + takeout.getstorename());
+          StoreRegister Takeout = new TakeoutStore();
+          StoreRegister Forhere = new ForhereStore();
+          
+          Store store = Takeout.RegisterStore("asd123", "Coffee");
+          System.out.println(store.getstorename()); 
+          store.prepare();
+          
+          store = Takeout.RegisterStore("asd1224", "Bakery");
+          System.out.println(store.getstorename()); 
+          store.prepare();
+          
+          store = Forhere.RegisterStore("asd123", "Coffee");
+          System.out.println(store.getstorename()); 
+          store.prepare();
+          
+          store = Forhere.RegisterStore("asd124", "Bakery");
+          System.out.println(store.getstorename()); 
+          store.prepare();
+          
+          
+          
         
     }
    
