@@ -6,11 +6,10 @@
 package Controller;
 
 import DB.MemberDAO;
-import Src.SignUp_BuilderPattern.Guest;
-import Src.SignUp_BuilderPattern.Member;
-import Src.SignUp_BuilderPattern.MemberType;
-import Src.SignUp_BuilderPattern.SignUpBuilder;
-import Src.SignUp_BuilderPattern.StoreManager;
+import Src.SignUp_BuilderPattern.GuestBuilder;
+import Src.SignUp_BuilderPattern.MemberBuilder;
+import Src.SignUp_BuilderPattern.SignUpProduct;
+import Src.SignUp_BuilderPattern.StoreManagerBuilder;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class StoreSignUpController implements Initializable {
     private TextField field_store_storetype;
 
     int check_id = 0; // id 체크를 위해 사용, 1인경우는 중복된 아이디가 있다.
-    ArrayList<StoreManager> guest_list = new ArrayList<StoreManager>();
+    ArrayList<StoreManagerBuilder> guest_list = new ArrayList<StoreManagerBuilder>();
     MemberDAO md = new MemberDAO();
 
     @Override
@@ -91,16 +90,16 @@ public class StoreSignUpController implements Initializable {
                         & !(field_store_signupaddress.getText().equals(""))
                         & !(field_store_signuptel.getText().equals(""))) {
                     //& (field_store_storetype.getText().equalsIgnoreCase("forhere") || field_store_storetype.getText().equalsIgnoreCase("takeout"))){
-                    Member member = new SignUpBuilder() // builder 패턴을 적용한 소스코드를 통한 회원가입 
+                    SignUpProduct storeManagerBuilder = new StoreManagerBuilder() // builder 패턴을 적용한 소스코드를 통한 회원가입 
+                            .setStoretype(field_store_storetype.getText())
                             .setIdx(2)
                             .setId(field_store_signupid.getText())
                             .setPw(field_store_signuppw.getText())
                             .setName(field_store_signupname.getText())
                             .setAddress(field_store_signupaddress.getText())
                             .setTel(field_store_signuptel.getText())
-                            .setStoretype(field_store_storetype.getText())
-                            .build(MemberType.STOREMANAGER);
-                    md.signUpStoreManager(member.getIdx(), member.getId(), member.getPw(), member.getName(), member.getTel(), member.getAddress(), member.getStoretype());
+                            .build();
+                    storeManagerBuilder.SignUpGuest(2);
                     System.out.println("회원가입이 완료되었습니다.");
 
                     Stage stage = (Stage) btn_goback.getScene().getWindow();
