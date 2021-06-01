@@ -11,7 +11,7 @@ package Src.StoreRegister;
  */
 public class TakeoutbakeryStore extends Store {
           public TakeoutbakeryStore(String id){
-            storename= "커피집입니다";
+            storename= "빵집";
             this.id = id;
             tabletype = "TakeOut";
             storeaddress = "주소를 변경하세요";
@@ -19,9 +19,5 @@ public class TakeoutbakeryStore extends Store {
             open_time = 9;
             close_time = 18;
             max = 200;
-    }
-          
-          public void prepare() {
-    System.out.print("포장지 셋팅 완료");
-    };
+    }     
 }

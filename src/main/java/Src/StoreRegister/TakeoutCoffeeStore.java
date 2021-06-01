@@ -11,7 +11,7 @@ package Src.StoreRegister;
  */
 public class TakeoutCoffeeStore extends Store {
         public TakeoutCoffeeStore(String id){
-            storename= "커피집입니다";
+            storename= "커피";
             this.id = id;
             tabletype = "TakeOut";
             storeaddress = "주소를 변경하세요";
@@ -21,9 +21,7 @@ public class TakeoutCoffeeStore extends Store {
             max = 200;
     }
         
-        public void prepare() {
-    System.out.print("포장지 셋팅 완료");
-    };
+     
 
   
 }

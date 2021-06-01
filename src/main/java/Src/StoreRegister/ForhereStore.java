@@ -11,7 +11,6 @@ package Src.StoreRegister;
  */
 public class ForhereStore extends StoreRegister{
     
-
     @Override
     public Store createStore(String id, String type) {
         switch(type){

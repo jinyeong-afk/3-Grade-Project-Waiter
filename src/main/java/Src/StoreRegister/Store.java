@@ -5,6 +5,9 @@
  */
 package Src.StoreRegister;
 
+import DB.StoreDAO;
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author sejin
@@ -18,7 +21,7 @@ public abstract class Store {
     protected int open_time;
     protected int close_time;
     protected int max;   
-    
+     private StoreDAO sd = new StoreDAO();
    
     public String getid() { return this.id; };
 
@@ -36,8 +39,28 @@ public abstract class Store {
    
     public  int getmax(){ return this.max; };
     
-    public void prepare() {
-    System.out.print("테이블 셋팅 완료");
+  
+    public void Business_registration (){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("음식 예약 프로그램 : Waiter");
+        alert.setHeaderText(null);
+        alert.setContentText("사업자 등록증 확인 완료");
+        alert.showAndWait();
+        System.out.println("사업자 등록증 확인 완료");
+    };
+
+   
+    public void store_view_check() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("음식 예약 프로그램 : Waiter");
+        alert.setHeaderText(null);
+        alert.setContentText("매장 사진 확인 완료");
+        alert.showAndWait();
+        System.out.println("매장 사진 확인 완료");
+      
+    };
+       public void dbsignup() {
+      sd.signUpStore(id, tabletype, storename, storetel, storeaddress, open_time, close_time, max);
     };
     
 }

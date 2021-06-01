@@ -11,7 +11,7 @@ package Src.StoreRegister;
  */
 public class ForhereCoffeeStore extends Store {
       public ForhereCoffeeStore(String id){
-            storename= "커피집입니다";
+            storename= "커피";
             this.id = id;
             tabletype = "ForHere";
             storeaddress = "주소를 변경하세요";
@@ -19,8 +19,6 @@ public class ForhereCoffeeStore extends Store {
             open_time = 11;
             close_time = 22;
             max = 20;
-                                    
-                     
+                                                   
     }
-
 }
