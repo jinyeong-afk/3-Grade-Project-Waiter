@@ -43,7 +43,7 @@ public class SignUpProduct {
         this.storetype = builder.storetype;
     }
 
-    public void SignUpGuest(int index) {  //DB 에 값 주입
+    public void SignUp(int index) {  //DB 에 값 주입
         MemberDAO md = new MemberDAO();
         if (index == 1) { // 손님 회원가입
             md.signUpGuest(this.idx, this.id, this.pw, this.name, this.tel, this.address, this.balance);
