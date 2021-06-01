@@ -98,7 +98,7 @@ public class GuestSignUpController implements Initializable {
                              .setTel(field_signuptel.getText())
                              .setAddress(field_signupadress.getText())
                              .build();
-                    guestBuilder.SignUpGuest(1);
+                    guestBuilder.SignUp(1);
                     System.out.println("회원가입이 완료되었습니다.");
 
                                     

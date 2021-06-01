@@ -13,16 +13,6 @@ public class StoreManagerBuilder extends MemberBuilder{
     
     protected String storetype;
     
-//    public StoreManagerBuilder(int idx, String id, String pw, String name, String tel, String address, String storetype){
-//        this.idx = idx;
-//        this.id = id;
-//        this.pw = pw;
-//        this.name = name;
-//        this.tel = tel;
-//        this.address = address;
-//        this.storetype = storetype;     
-//    }
-
     public StoreManagerBuilder setStoretype(String storetype) {
         this.storetype = storetype;
         return this;

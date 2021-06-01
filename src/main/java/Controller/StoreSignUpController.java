@@ -99,7 +99,7 @@ public class StoreSignUpController implements Initializable {
                             .setAddress(field_store_signupaddress.getText())
                             .setTel(field_store_signuptel.getText())
                             .build();
-                    storeManagerBuilder.SignUpGuest(2);
+                    storeManagerBuilder.SignUp(2);
                     System.out.println("회원가입이 완료되었습니다.");
 
                     Stage stage = (Stage) btn_goback.getScene().getWindow();

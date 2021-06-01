@@ -13,25 +13,10 @@ public class GuestBuilder extends MemberBuilder{
     
     protected int balance;
     
-//    public GuestBuilder(int idx, String id, String pw, String name, String tel, String address, int balance){
-//        this.idx = idx;
-//        this.id = id;
-//        this.pw = pw;
-//        this.name = name;
-//        this.tel = tel;
-//        this.address = address;
-//        this.balance = balance;
-//    }
-
     public GuestBuilder setBalance(int balance) {
         this.balance = balance;
         return this;
     }
-
-    public int getBalance() {
-        return balance;
-    }
-    
     
     @Override
     public SignUpProduct build(){
