@@ -59,18 +59,19 @@ public class AdminmodifyController implements Initializable {
     private List<String> listGuest = new ArrayList<>();
     private List<String> listManager = new ArrayList<>();
     private List<String> listIDPW = new ArrayList<>();
+        private List<String> listBlacklist = new ArrayList<>();
 
     private ObservableList<String> userList;//게스트 출력 리스트
     private ObservableList<String> userList2;//매니저 출력 리스트
     private ObservableList<String> userIDPW;//현재 IDPW출력 리스트
-    private ObservableList<String> blackList;//현재 IDPW출력 리스트
-
+    private ObservableList<String> userList3;//블랙리스트 출력 리스트
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         userList = FXCollections.observableArrayList(); // 게스트 배열화
         userList2 = FXCollections.observableArrayList(); // 매장관리자 배열화
-        blackList = FXCollections.observableArrayList(); // 매장관리자 배열화
+        userList3 = FXCollections.observableArrayList(); // 매장관리자 배열화
+        
 
         listGuest = ud.getGuestIDName();
         for (int i = 0; i < listGuest.size(); i++) {
@@ -83,6 +84,13 @@ public class AdminmodifyController implements Initializable {
             list_adminstormanager.setItems(userList2);
         }
 
+           
+        listBlacklist = ud.getBlackIDName();
+        for (int i = 0; i < listBlacklist.size(); i++) {
+            userList3.add(listBlacklist.get(i));
+            list_blacklist.setItems(userList3);
+        }
+        
         list_adminguest.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
@@ -187,6 +195,27 @@ public class AdminmodifyController implements Initializable {
                 System.out.println("이용자 블랙리스트 추가");
                 BlackListTask bt = new BlackListTask();
                 bt.task(field_modifyID.getText(), field_modifyPW.getText());
+                
+                  userList = FXCollections.observableArrayList(); // 게스트 배열화
+                userList2 = FXCollections.observableArrayList(); // 매장관리자 배열화
+                userList3 = FXCollections.observableArrayList(); // 매장관리자 배열화
+
+                listGuest = ud.getGuestIDName();
+                for (int i = 0; i < listGuest.size(); i++) {
+                    userList.add(listGuest.get(i));
+                    list_adminguest.setItems(userList);
+                }
+
+                listManager = ud.getManagerIDName();
+                for (int i = 0; i < listManager.size(); i++) {
+                    userList2.add(listManager.get(i));
+                    list_adminstormanager.setItems(userList2);
+                }
+                listBlacklist = ud.getBlackIDName();
+                for (int i = 0; i < listBlacklist.size(); i++) {
+                    userList3.add(listBlacklist.get(i));
+                    list_blacklist.setItems(userList3);
+                }
             }
         });
 

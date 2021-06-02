@@ -68,6 +68,38 @@ public class UserDAO {
         }
         return list;
     }
+    
+     public ArrayList<String> getBlackIDName() {
+
+        ArrayList<String> list1 = new ArrayList<>();
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("getManagerIDName 연결");
+            sql = "select id from member where idx=4 ";//매장 관리자
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            String value = "";
+            while (rs.next()) {
+                value = rs.getString(1);
+                list1.add(value);
+            }
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DB 로드 실패");
+        }
+        return list1;
+    }
 
     public ArrayList<String> getManagerIDName() {
 

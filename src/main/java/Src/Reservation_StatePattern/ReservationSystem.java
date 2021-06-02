@@ -33,16 +33,9 @@ public class ReservationSystem {
         this.menu = menu;
         this.amount = amount;
         this.payCheck = payCheck;
-        
-        setReservationState(PossibleReservation.instance());
 
     }
 
-    public ReservationState getReservationState() {
-        return reservationState;
-    }
-
-    
     public void setReservationState(ReservationState reservationState) {
         this.reservationState = reservationState;
     }
