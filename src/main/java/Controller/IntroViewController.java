@@ -193,6 +193,10 @@ public class IntroViewController implements Initializable {
                     stage.setScene(scene);
                     stage.show();   
                 }
+                 else 
+                {
+                 noWindow();
+                }
             }
         }
         );
@@ -203,6 +207,13 @@ public class IntroViewController implements Initializable {
         alert.setTitle("음식 예약 프로그램 : Waiter");
         alert.setHeaderText(null);
         alert.setContentText("정상적으로 로그인되었습니다.");
+        alert.showAndWait();
+    }
+        public static void noWindow() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("음식 예약 프로그램 : Waiter");
+        alert.setHeaderText(null);
+        alert.setContentText("ID 또는 PW를 확인하세요.");
         alert.showAndWait();
     }
 }
