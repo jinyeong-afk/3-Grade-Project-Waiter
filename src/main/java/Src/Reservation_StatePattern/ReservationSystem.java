@@ -38,38 +38,6 @@ public class ReservationSystem {
 
     }
 
-    public String getGuestId() {
-        return guestId;
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public Date getReserveDate() {
-        return reserveDate;
-    }
-
-    public int getResertime() {
-        return resertime;
-    }
-
-    public String getMenu() {
-        return menu;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public int getPayCheck() {
-        return payCheck;
-    }
-
     public ReservationState getReservationState() {
         return reservationState;
     }
