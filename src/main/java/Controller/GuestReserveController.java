@@ -228,7 +228,7 @@ public class GuestReserveController implements Initializable {
                             listCheck.get(idx), listCheckAmount.get(idx), 0);
                     if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
                             java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString())) == 1) {
-                        rs.setReservationState(PossibleReservation.instance());
+//                        rs.setReservationState(PossibleReservation.instance());
                         rs.update();
 
                     } else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
