@@ -106,6 +106,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         //로그인한 ID가 store에 없다면 
         if(!(sd.checkRegist(IntroViewController.getField))){
+            
             btn_store_modify.setVisible(false); //수정 버튼은 사라진다
             btn_store_register.setOnMouseClicked(new EventHandler<MouseEvent>() { //마우스 등록버튼 클릭시 발생 이벤트 현재 매장 정보 등록
                 @Override
@@ -114,6 +115,13 @@ public class StoreManagerMenuManageViewController implements Initializable{
                     radio_coffee.setVisible(false); 
                     radio_bakery.setVisible(false); //라디오 버튼은 사라진다
                     btn_store_register.setVisible(false); //가게 등록 버튼은 사라진다
+                      field_storename.setVisible(false);
+                            field_storeaddress.setVisible(false);
+                            field_storetel.setVisible(false);
+                            field_open_time.setVisible(false);
+                            field_end_time.setVisible(false);
+                            field_max.setVisible(false);
+                            field_storetype.setVisible(false); 
                         if(sd.checkforhere(IntroViewController.getField)){
                               
                                 System.out.println(store_type);
@@ -135,7 +143,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                              
                                 store = Takeout.RegisterStore(IntroViewController.getField, store_type);           
 
-                                
+                               
                                   btn_store_modify.setVisible(true); //수정 버튼 생김
                                 try {
                                     stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
@@ -144,22 +152,23 @@ public class StoreManagerMenuManageViewController implements Initializable{
                                     Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
 
-                            
+                            field_storename.setVisible(true);
+                            field_storeaddress.setVisible(true);
+                            field_storetel.setVisible(true);
+                            field_open_time.setVisible(true);
+                            field_end_time.setVisible(true);
+                            field_max.setVisible(true);
+                            field_storetype.setVisible(true);  
+                            field_storename.setText(stringStoreList.get(0));
+                            field_storeaddress.setText(stringStoreList.get(1));
+                            field_storetel.setText(stringStoreList.get(2));
+                            field_open_time.setText(Integer.toString(IntegerStoreList.get(0)));
+                            field_end_time.setText(Integer.toString(IntegerStoreList.get(1)));
+                            field_max.setText(Integer.toString(IntegerStoreList.get(2)));
+                            field_storetype.setText(stringStoreList.get(3));
                         }
-                        field_storename.setVisible(true);
-                        field_storeaddress.setVisible(true);
-                        field_storetel.setVisible(true);
-                        field_open_time.setVisible(true);
-                        field_end_time.setVisible(true);
-                        field_max.setVisible(true);
-                        field_storetype.setVisible(true);
-                        field_storename.setText(stringStoreList.get(0));
-                        field_storeaddress.setText(stringStoreList.get(1));
-                        field_storetel.setText(stringStoreList.get(2));
-                        field_open_time.setText(Integer.toString(IntegerStoreList.get(0)));
-                        field_end_time.setText(Integer.toString(IntegerStoreList.get(1)));
-                        field_max.setText(Integer.toString(IntegerStoreList.get(2)));
-                        field_storetype.setText(stringStoreList.get(3));
+                        
+                      
                     }
                
                 } );
