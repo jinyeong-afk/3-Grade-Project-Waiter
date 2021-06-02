@@ -51,4 +51,38 @@ public class SignUpProduct {
             md.signUpStoreManager(this.idx, this.id, this.pw, this.name, this.tel, this.address, this.storetype);
         }
     }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public String getStoretype() {
+        return storetype;
+    }
+    
+    
 }

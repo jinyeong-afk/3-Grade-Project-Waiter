@@ -35,22 +35,22 @@ public class PossibleReservation implements ReservationState{
     public void updateState(ReservationSystem reservationSystem, String guestId, String storeName, Date reserveDate, int reserveTime, String menu, int amount, int payCheck){
         
         ReservationDAO rd = new ReservationDAO();
-        if(rd.checkSequence(guestId, storeName, reserveDate, reserveTime) == 3){
-                                    
-            System.out.println("FullReservation");
-            reservationSystem.setReservationState(FullReservation.instance());
-            reservationSystem.update();
-        }
-        else if(rd.checkSequence(guestId, storeName, reserveDate, reserveTime) == 2){
-                        
-            System.out.println("WaitingReservation");
-            reservationSystem.setReservationState(WaitingReservation.instance());
-            reservationSystem.update();
-        }else{
-            
+//        if(rd.checkSequence(guestId, storeName, reserveDate, reserveTime) == 3){
+//                                    
+//            System.out.println("FullReservation");
+//            reservationSystem.setReservationState(FullReservation.instance());
+//            reservationSystem.update();
+//        }
+//        else if(rd.checkSequence(guestId, storeName, reserveDate, reserveTime) == 2){
+//                        
+//            System.out.println("WaitingReservation");
+//            reservationSystem.setReservationState(WaitingReservation.instance());
+//            reservationSystem.update();
+//        }else{
+//            
             System.out.println("PossibleReservation");
             rd.guestReserve(guestId, storeName, reserveDate, reserveTime, menu, amount, payCheck);
 //            reservationSystem.setReservationState(PossibleReservation.instance());
-        }
+//        }
     }
 }

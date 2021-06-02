@@ -26,10 +26,11 @@ public class run {
         java.sql.Date d = java.sql.Date.valueOf(from);
         
         ReservationDAO rd = new ReservationDAO();
-//        rd.guestReserve( "test1234", "고기집", d, 3, "닭고기", 9000, 2, 0);
-
-        ReservationSystem rs = new ReservationSystem(null, "a2", "고기집", d, 4, "닭고기", 2, 0);
-//        
+        //        rd.guestReserve( "test1234", "고기집", d, 3, "닭고기", 9000, 2, 0);
+        //ReservationSystem(String guestId, String storeName, Date reserveDate, int reserveTime, String menu, int amount, int payCheck)
+        ReservationSystem rs = new ReservationSystem("zxc123", "세진국밥", d, 4, "돼지국밥", 2, 1);
+        
+        rs.setReservationState(FullReservation.instance());
         rs.update();
         
     }

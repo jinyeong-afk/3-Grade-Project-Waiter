@@ -36,15 +36,9 @@ public class WaitingReservation implements ReservationState{
     public void updateState(ReservationSystem reservationSystem, String guestId, String storeName, Date reserveDate, int reserveTime, String menu, int amount, int payCheck){
         
         ReservationDAO rd = new ReservationDAO();
-        if(rd.checkSequence(guestId, storeName, reserveDate, reserveTime) == 1){
-            reservationSystem.setReservationState(PossibleReservation.instance());
-        }else if(rd.checkSequence(guestId, storeName, reserveDate, reserveTime) == 3){
-            reservationSystem.setReservationState(FullReservation.instance());
-        }else{
+
             System.out.println("WaitingReservation");
-            rd.guestReserve(guestId, storeName, reserveDate, reserveTime, menu, amount, payCheck);
-            reservationSystem.setReservationState(WaitingReservation.instance());
-        }
+            rd.guestWaitReserve(guestId, storeName, reserveDate, reserveTime, menu, amount, payCheck);
         
     }
     
