@@ -5,61 +5,74 @@
  */
 package Controller;
 
+import DB.UserDAO;
+import Src.TemplateMethodPattern.BlackListTask;
+import Src.TemplateMethodPattern.DeleteTask;
+import Src.TemplateMethodPattern.ModifyTask;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
  * @author 박성호, 허세진
  */
-public class AdminmodifyController implements Initializable{
+public class AdminmodifyController implements Initializable {
+
     @FXML
     private ListView list_adminguest;
     @FXML
     private ListView list_adminstormanager;
     @FXML
+    private ListView list_blacklist;
+    @FXML
     private Button btn_adminmodify;
     @FXML
     private Button btn_admindelete;
+    @FXML
+    private Button btn_todolistclear;
+    @FXML
+    private Button btn_addblacklist;
     @FXML
     private TextField field_modifyID;
     @FXML
     private TextField field_modifyPW;
     @FXML
     private TextField feld_modifyPWcheck;
-<<<<<<< Updated upstream
-    
-      @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    
-=======
 
     private UserDAO ud = new UserDAO();
 
     private List<String> listGuest = new ArrayList<>();
     private List<String> listManager = new ArrayList<>();
     private List<String> listIDPW = new ArrayList<>();
-    private List<String> listBlacklist = new ArrayList<>();
-    
+        private List<String> listBlacklist = new ArrayList<>();
+
     private ObservableList<String> userList;//게스트 출력 리스트
     private ObservableList<String> userList2;//매니저 출력 리스트
     private ObservableList<String> userIDPW;//현재 IDPW출력 리스트
-    private ObservableList<String> blackList;//현재 IDPW출력 리스트
-        private ObservableList<String> userList3;//블랙리스트 출력 리스트
-
+    private ObservableList<String> userList3;//블랙리스트 출력 리스트
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         userList = FXCollections.observableArrayList(); // 게스트 배열화
         userList2 = FXCollections.observableArrayList(); // 매장관리자 배열화
-      
-   userList3 = FXCollections.observableArrayList(); // 매장관리자 배열화
+        userList3 = FXCollections.observableArrayList(); // 매장관리자 배열화
+        
+
         listGuest = ud.getGuestIDName();
         for (int i = 0; i < listGuest.size(); i++) {
             userList.add(listGuest.get(i));
@@ -71,11 +84,13 @@ public class AdminmodifyController implements Initializable{
             list_adminstormanager.setItems(userList2);
         }
 
-            listBlacklist = ud.getBlackIDName();
+           
+        listBlacklist = ud.getBlackIDName();
         for (int i = 0; i < listBlacklist.size(); i++) {
             userList3.add(listBlacklist.get(i));
             list_blacklist.setItems(userList3);
         }
+        
         list_adminguest.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
@@ -181,7 +196,7 @@ public class AdminmodifyController implements Initializable{
                 BlackListTask bt = new BlackListTask();
                 bt.task(field_modifyID.getText(), field_modifyPW.getText());
                 
-                 userList = FXCollections.observableArrayList(); // 게스트 배열화
+                  userList = FXCollections.observableArrayList(); // 게스트 배열화
                 userList2 = FXCollections.observableArrayList(); // 매장관리자 배열화
                 userList3 = FXCollections.observableArrayList(); // 매장관리자 배열화
 
@@ -201,10 +216,8 @@ public class AdminmodifyController implements Initializable{
                     userList3.add(listBlacklist.get(i));
                     list_blacklist.setItems(userList3);
                 }
-             
             }
         });
 
->>>>>>> Stashed changes
     }
 }
