@@ -9,7 +9,6 @@ import DB.LoginDTO;
 import Src.SignIn_StrategyPattern.GuestLoginBehavior;
 import Src.SignIn_StrategyPattern.Login;
 import Src.SignIn_StrategyPattern.StoreManagerLoginBehavior;
-import Src.SignIn_StrategyPattern.SystemMangerLoginBehavior;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -25,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -54,12 +52,74 @@ public class IntroViewController implements Initializable {
     @FXML
     private TextField field_id;
     @FXML
-    private PasswordField field_pw;
+    private TextField field_pw;
     
     protected static String getField;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
+        btn_login_guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/GuestMainView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(GuestMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                okWindow();
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
+        btn_login_manager.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/StoreManagerMainView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(StoreManagerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                okWindow();
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
+        
+        btn_login_adminirastor.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                
+                Stage stage = (Stage) login_stage.getScene().getWindow();
+                Parent main = null;
+                
+                try {
+                    main = FXMLLoader.load(getClass().getResource("/fxml/AdminMainView.fxml"));
+                } catch (IOException ex) {
+                Logger.getLogger(AdminMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                okWindow();
+                Scene scene = new Scene(main);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        }
+        );
         
         btn_signup_guest.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -107,7 +167,6 @@ public class IntroViewController implements Initializable {
                 getField = field_id.getText();
                 Login storeManagerLogin = new Login(new StoreManagerLoginBehavior());
                 Login guestLogin = new Login(new GuestLoginBehavior());
-                Login adminLogin = new Login(new SystemMangerLoginBehavior());
                 Stage stage = (Stage) login_stage.getScene().getWindow();
                 Parent main = null;
 //                System.out.println(storeManagerLogin.unLock(field_id.getText(), field_pw.getText()));
@@ -133,16 +192,10 @@ public class IntroViewController implements Initializable {
                     Scene scene = new Scene(main);
                     stage.setScene(scene);
                     stage.show();   
-                } else if( adminLogin.unLock(field_id.getText(), field_pw.getText()) == 3){
-                    try {
-                        main = FXMLLoader.load(getClass().getResource("/fxml/AdminMainView.fxml"));
-                    } catch (IOException ex) {
-                    Logger.getLogger(AdminMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    okWindow();
-                    Scene scene = new Scene(main);
-                    stage.setScene(scene);
-                    stage.show();   
+                }
+                 else 
+                {
+                 noWindow();
                 }
             }
         }
@@ -154,6 +207,13 @@ public class IntroViewController implements Initializable {
         alert.setTitle("음식 예약 프로그램 : Waiter");
         alert.setHeaderText(null);
         alert.setContentText("정상적으로 로그인되었습니다.");
+        alert.showAndWait();
+    }
+        public static void noWindow() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("음식 예약 프로그램 : Waiter");
+        alert.setHeaderText(null);
+        alert.setContentText("ID 또는 PW를 확인하세요.");
         alert.showAndWait();
     }
 }
