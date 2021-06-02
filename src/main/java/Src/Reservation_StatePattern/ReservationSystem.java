@@ -33,77 +33,10 @@ public class ReservationSystem {
         this.menu = menu;
         this.amount = amount;
         this.payCheck = payCheck;
+        
+        setReservationState(PossibleReservation.instance());
 
     }
-
-//    public String getGuestId(){
-//        return guestId;
-//    }
-//
-//    public void setGuestId(String guestId) {
-//        this.guestId = guestId;
-//    }
-//
-//    public String getStoreName() {
-//        return storeName;
-//    }
-//
-//    public void setStoreName(String storeName) {
-//        this.storeName = storeName;
-//    }
-//
-//    public Date getReserveDate() {
-//        return reserveDate;
-//    }
-//
-//    public void setReserveDate(Date reserveDate) {
-//        this.reserveDate = reserveDate;
-//    }
-//
-//    public int getResertime() {
-//        return resertime;
-//    }
-//
-//    public void setResertime(int resertime) {
-//        this.resertime = resertime;
-//    }
-//
-//    public String getMenu() {
-//        return menu;
-//    }
-//
-//    public void setMenu(String menu) {
-//        this.menu = menu;
-//    }
-//
-//    public int getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(int price) {
-//        this.price = price;
-//    }
-//
-//    public int getAmount() {
-//        return amount;
-//    }
-//
-//    public void setAmount(int amount) {
-//        this.amount = amount;
-//    }
-//
-//    public int getPayCheck() {
-//        return payCheck;
-//    }
-//
-//    public void setPayCheck(int payCheck) {
-//        this.payCheck = payCheck;
-//    }
-//
-//
-//    public ReservationState getReservationState() {
-//        return reservationState;
-//    }
 
     public void setReservationState(ReservationState reservationState) {
         this.reservationState = reservationState;
