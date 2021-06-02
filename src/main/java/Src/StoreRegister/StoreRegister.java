@@ -15,6 +15,11 @@ public abstract class StoreRegister {
     public Store RegisterStore(String id, String type){
         Store new_store = createStore(id, type);
         System.out.println("매장 생성");
+        
+        new_store.dbsignup();
+        new_store.Business_registration();
+        new_store.store_view_check();
+        
         return new_store;
     }
 

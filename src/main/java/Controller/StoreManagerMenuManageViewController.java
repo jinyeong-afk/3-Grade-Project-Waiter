@@ -29,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -98,7 +99,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
     StoreRegister Takeout = new TakeoutStore();
     StoreRegister Forhere = new ForhereStore();
     String store_type;
-   
+    Store store; 
     
     
     @Override
@@ -109,7 +110,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
             btn_store_register.setOnMouseClicked(new EventHandler<MouseEvent>() { //마우스 등록버튼 클릭시 발생 이벤트 현재 매장 정보 등록
                 @Override
                 public void handle(MouseEvent event) { 
-                      Store store; 
+                     
                     radio_coffee.setVisible(false); 
                     radio_bakery.setVisible(false); //라디오 버튼은 사라진다
                     btn_store_register.setVisible(false); //가게 등록 버튼은 사라진다
@@ -118,8 +119,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                                 System.out.println(store_type);
                                 store = Forhere.RegisterStore(IntroViewController.getField, store_type);
 
-                                sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
-                                 store.getopen_time(), store.getclose_time(), store.getmax());
+                                
                                   btn_store_modify.setVisible(true); //수정 버튼 생김
                                 try {
                                     stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
@@ -135,8 +135,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                              
                                 store = Takeout.RegisterStore(IntroViewController.getField, store_type);           
 
-                                sd.signUpStore(store.getid(), store.getstoretype(), store.getstorename(), store.getstoretel(), store.getstoreaddress(),
-                                store.getopen_time(), store.getclose_time(), store.getmax());
+                                
                                   btn_store_modify.setVisible(true); //수정 버튼 생김
                                 try {
                                     stringStoreList = sd.getStringStoreInformaiton(IntroViewController.getField);
@@ -327,5 +326,9 @@ public class StoreManagerMenuManageViewController implements Initializable{
                 
                 }
         });
+        
+  
+    
     }
+        
 }

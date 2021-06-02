@@ -111,8 +111,13 @@ public class StoreOrderCheckViewController implements Initializable {
         list_now_table.setOnMouseClicked(new EventHandler<MouseEvent>() {  //현재 테이블 클릭시 테이블 필드에 테이블 값이 set 된다.
             @Override
             public void handle(MouseEvent event) {
-                Object obj = list_now_table.getSelectionModel().getSelectedItem();
-                field_table_check.setText(obj.toString());
+                if (list_now_table.getSelectionModel().getSelectedItem() == null) {
+                    setWindow("빈 테이블을 선택하셨습니다.");
+
+                } else {
+                    Object obj = list_now_table.getSelectionModel().getSelectedItem();
+                    field_table_check.setText(obj.toString());
+                }
 
             }
         });
@@ -157,7 +162,7 @@ public class StoreOrderCheckViewController implements Initializable {
                 } catch (SQLException ex) {
                     Logger.getLogger(StoreOrderCheckViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                AddAmountCommand addAmountCommand = new AddAmountCommand(allprice);
+                AddAmountCommand addAmountCommand = new AddAmountCommand(allprice, receive);
                 Invoke invoke = new Invoke(addAmountCommand);
                 invoke.setCommand(addAmountCommand); // 실행할 커맨드 지정
                 client.setAmountNotPaid(Integer.parseInt(invoke.pressed()));
@@ -209,7 +214,7 @@ public class StoreOrderCheckViewController implements Initializable {
                     client.setPaymentType("card");
                     client.setAmountPaid(Integer.parseInt(field_give_card.getText()));
                     careTaker.push(client.CreateMemento());
-                    SubAmountCommand subAmountCommand = new SubAmountCommand(client.getAmountPaid(), client.getAmountNotPaid());
+                    SubAmountCommand subAmountCommand = new SubAmountCommand(client.getAmountPaid(), client.getAmountNotPaid(), receive);
 
                     Invoke invoke_pay = new Invoke(payCommand);
                     invoke_pay.setCommand(payCommand);
@@ -225,10 +230,10 @@ public class StoreOrderCheckViewController implements Initializable {
                     String[] com = invoke_com.pressed().split(",");
                     setWindow(com[0]);
                     client.setPayCheck(Integer.parseInt(com[1]));
-                    if (com[0].equals(receive.payError())) // 결제 에러가 뜰 경우
+                    if (com[0].equals("결제 오류가 발생했습니다.")) // 결제 에러가 뜰 경우
                     {
                         client.RestorMemento(careTaker.pop()); // 계산되기 전의 값들을 불러온다
-                    } else if (com[0].equals(receive.completion())) {
+                    } else if (com[0].equals("결제를 종료합니다.")) {
                         String change_query = "update guest set pay_check = " + client.getPayCheck() + " where storename = '" + store_name + "'" + "and guest_id = '" + client.getID() + "'";
                         try {
                             db.changeDB(change_query); // DB에 pay_check 값 변경
@@ -236,9 +241,11 @@ public class StoreOrderCheckViewController implements Initializable {
                         } catch (SQLException ex) {
                             Logger.getLogger(StoreOrderCheckViewController.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                        refresh(); // 테이블 새로고침
                     }
 
                     field_total_price.setText(Integer.toString(client.getAmountNotPaid()));
+                    field_give_card.setText("");
                 }
             }
         }
@@ -262,7 +269,7 @@ public class StoreOrderCheckViewController implements Initializable {
                     client.setPaymentType("cash");
                     client.setAmountPaid(Integer.parseInt(field_give_cash.getText()));
 
-                    SubAmountCommand subAmountCommand = new SubAmountCommand(client.getAmountPaid(), client.getAmountNotPaid());
+                    SubAmountCommand subAmountCommand = new SubAmountCommand(client.getAmountPaid(), client.getAmountNotPaid(), receive);
 
                     Invoke invoke_pay = new Invoke(payCommand);
                     invoke_pay.setCommand(payCommand);
@@ -282,12 +289,14 @@ public class StoreOrderCheckViewController implements Initializable {
                     String change_query = "update guest set pay_check = " + client.getPayCheck() + " where storename = '" + store_name + "'" + "and guest_id = '" + client.getID() + "'";
                     try {
                         db.changeDB(change_query);// DB에 pay_check 값 변경
+                        refresh(); // 테이블 새로고침
                         //db.closeDB();
                     } catch (SQLException ex) {
                         Logger.getLogger(StoreOrderCheckViewController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     field_total_price.setText(Integer.toString(client.getAmountNotPaid()));
+                    field_give_card.setText("");
                 }
 
             }
@@ -301,5 +310,13 @@ public class StoreOrderCheckViewController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(text);
         alert.showAndWait();
+    }
+
+    public void refresh() {
+
+        list_now_table.getItems().remove(field_table_check.getText());
+        //list_now_table.setItems(cGuestList);
+        list_menuname.getItems().clear();
+        list_price.getItems().clear();
     }
 }
