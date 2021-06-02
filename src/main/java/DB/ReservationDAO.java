@@ -435,7 +435,7 @@ public class ReservationDAO {
             conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
             System.out.println("연결");
             //sql = "select guest_id from guest where storename = ? ";
-            sql = "select distinct(guest_id) from( select * from store join guest using (storename)) where store_id = ?";
+            sql = "select distinct(guest_id) from( select * from store join guest using (storename)) where store_id = ? and pay_check = 0";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
 
