@@ -146,6 +146,13 @@ public class StoreManagerMenuManageViewController implements Initializable{
 
                             
                         }
+                        field_storename.setVisible(true);
+                        field_storeaddress.setVisible(true);
+                        field_storetel.setVisible(true);
+                        field_open_time.setVisible(true);
+                        field_end_time.setVisible(true);
+                        field_max.setVisible(true);
+                        field_storetype.setVisible(true);
                         field_storename.setText(stringStoreList.get(0));
                         field_storeaddress.setText(stringStoreList.get(1));
                         field_storetel.setText(stringStoreList.get(2));
@@ -166,6 +173,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                 radio_coffee.setVisible(false); 
                 radio_bakery.setVisible(false); //라디오 버튼은 사라진다
                 btn_store_register.setVisible(false); //가게 등록 버튼은 사라진다
+            
                 
             } catch (SQLException ex) {
                 Logger.getLogger(StoreManagerMenuManageViewController.class.getName()).log(Level.SEVERE, null, ex);
@@ -178,6 +186,8 @@ public class StoreManagerMenuManageViewController implements Initializable{
               field_end_time.setText(Integer.toString(IntegerStoreList.get(1)));
               field_max.setText(Integer.toString(IntegerStoreList.get(2)));
               field_storetype.setText(stringStoreList.get(3));
+            
+              
             
               //메뉴 리스트박스에 현재 store의 메뉴 모두 출력
               MenuStoreList = FXCollections.observableArrayList();  // 배열화
