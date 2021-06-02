@@ -231,21 +231,19 @@ public class GuestReserveController implements Initializable {
                         rs.setReservationState(PossibleReservation.instance());
                         rs.update();
 
-                    }
-                    else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
+                    } else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
                             java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString())) == 2) {
                         rs.setReservationState(WaitingReservation.instance());
                         rs.update();
 
-                    } 
-                    else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
+                    } else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
                             java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString())) == 3) {
                         rs.setReservationState(FullReservation.instance());
                         rs.update();
 
-                    } 
+                    }
                 }
-
+                list_ordercheck.getItems().clear();
             }
         }
         );
