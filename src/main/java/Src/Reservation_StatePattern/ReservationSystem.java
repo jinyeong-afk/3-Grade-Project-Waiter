@@ -22,104 +22,88 @@ public class ReservationSystem {
     private int price;
     private int amount;
     private int payCheck;
-//    private int waitSequence;
             
     private ReservationState reservationState;
 
-    public ReservationSystem(ReservationState reservationState, String guestId, String storeName, Date reserveDate, int reserveTime, String menu, int amount, int payCheck) {
-        this.reservationState = reservationState;
+    public ReservationSystem(String guestId, String storeName, Date reserveDate, int reserveTime, String menu, int amount, int payCheck) {
         this.guestId = guestId;
         this.storeName = storeName;
         this.reserveDate = reserveDate;
         this.resertime = reserveTime;
         this.menu = menu;
-//        this.price = price;
         this.amount = amount;
         this.payCheck = payCheck;
-//        this.waitSequence = waitSequence;
-        
-        ReservationDAO rd = new ReservationDAO();
-        
-        if(reservationState == null) {
-            this.reservationState = PossibleReservation.instance();
-        }
+
     }
 
-    public String getGuestId(){
-        return guestId;
-    }
-
-    public void setGuestId(String guestId) {
-        this.guestId = guestId;
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
-    }
-
-    public Date getReserveDate() {
-        return reserveDate;
-    }
-
-    public void setReserveDate(Date reserveDate) {
-        this.reserveDate = reserveDate;
-    }
-
-    public int getResertime() {
-        return resertime;
-    }
-
-    public void setResertime(int resertime) {
-        this.resertime = resertime;
-    }
-
-    public String getMenu() {
-        return menu;
-    }
-
-    public void setMenu(String menu) {
-        this.menu = menu;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public int getPayCheck() {
-        return payCheck;
-    }
-
-    public void setPayCheck(int payCheck) {
-        this.payCheck = payCheck;
-    }
-
-//    public int getWaitSequence() {
-//        return waitSequence;
+//    public String getGuestId(){
+//        return guestId;
 //    }
 //
-//    public void setWaitSequence(int waitSequence) {
-//        this.waitSequence = waitSequence;
+//    public void setGuestId(String guestId) {
+//        this.guestId = guestId;
 //    }
-
-    public ReservationState getReservationState() {
-        return reservationState;
-    }
+//
+//    public String getStoreName() {
+//        return storeName;
+//    }
+//
+//    public void setStoreName(String storeName) {
+//        this.storeName = storeName;
+//    }
+//
+//    public Date getReserveDate() {
+//        return reserveDate;
+//    }
+//
+//    public void setReserveDate(Date reserveDate) {
+//        this.reserveDate = reserveDate;
+//    }
+//
+//    public int getResertime() {
+//        return resertime;
+//    }
+//
+//    public void setResertime(int resertime) {
+//        this.resertime = resertime;
+//    }
+//
+//    public String getMenu() {
+//        return menu;
+//    }
+//
+//    public void setMenu(String menu) {
+//        this.menu = menu;
+//    }
+//
+//    public int getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(int price) {
+//        this.price = price;
+//    }
+//
+//    public int getAmount() {
+//        return amount;
+//    }
+//
+//    public void setAmount(int amount) {
+//        this.amount = amount;
+//    }
+//
+//    public int getPayCheck() {
+//        return payCheck;
+//    }
+//
+//    public void setPayCheck(int payCheck) {
+//        this.payCheck = payCheck;
+//    }
+//
+//
+//    public ReservationState getReservationState() {
+//        return reservationState;
+//    }
 
     public void setReservationState(ReservationState reservationState) {
         this.reservationState = reservationState;

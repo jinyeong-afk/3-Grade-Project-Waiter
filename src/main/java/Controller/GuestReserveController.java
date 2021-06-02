@@ -7,7 +7,10 @@ package Controller;
 
 import DB.ReservationDAO;
 import DB.StoreDAO;
+import Src.Reservation_StatePattern.FullReservation;
+import Src.Reservation_StatePattern.PossibleReservation;
 import Src.Reservation_StatePattern.ReservationSystem;
+import Src.Reservation_StatePattern.WaitingReservation;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
@@ -87,7 +90,7 @@ public class GuestReserveController implements Initializable {
 
     private StoreDAO sd = new StoreDAO();
     protected static String field_store;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -108,23 +111,22 @@ public class GuestReserveController implements Initializable {
                 field_storeinfo.setText(listStoreInfo.get(0));
                 field_storeinfo_address.setText(listStoreInfo.get(1));
                 field_storeinfo_tel.setText(listStoreInfo.get(2));
-                
-                
-                field_store= field_check_store.getText();
-                 cStoreList = FXCollections.observableArrayList();  // 배열화
-                 listStoreReview = rd.getStoreReview(field_check_store.getText());
-                for(int i=0; i<listStoreReview.size(); i++){
+
+                field_store = field_check_store.getText();
+                cStoreList = FXCollections.observableArrayList();  // 배열화
+                listStoreReview = rd.getStoreReview(field_check_store.getText());
+                for (int i = 0; i < listStoreReview.size(); i++) {
                     cStoreList.add(listStoreReview.get(i));
-                 list_showreview.setItems(cStoreList);
+                    list_showreview.setItems(cStoreList);
                 }
-                 
+
                 cStoreList = FXCollections.observableArrayList();  // 배열화
                 listStoreScore = rd.getStoreScore(field_check_store.getText());
-                for(int i=0; i<listStoreScore.size(); i++){
-                  cStoreList.add(listStoreScore.get(i));
-                 list_showscore.setItems(cStoreList);
+                for (int i = 0; i < listStoreScore.size(); i++) {
+                    cStoreList.add(listStoreScore.get(i));
+                    list_showscore.setItems(cStoreList);
                 }
-                
+
                 listStoreOperateTime = rd.getStoreOperatertime(field_storeinfo.getText());
                 choice_time.getItems().removeAll(choice_time.getItems());
                 for (int i = listStoreOperateTime.get(0); i < listStoreOperateTime.get(1); i++) {
@@ -149,8 +151,7 @@ public class GuestReserveController implements Initializable {
                     PriceStoreList.add(listStorePrice.get(i));
                     list_price.setItems(PriceStoreList);
                 }
-                
-                
+
             }
         });
 
@@ -222,11 +223,27 @@ public class GuestReserveController implements Initializable {
                 for (int idx = 0; idx < listCheck.size(); idx++) {
 //                    System.out.println(java.sql.Date.valueOf(datepicker.getValue()).toString());
 //                    System.out.println(Integer.parseInt(choice_time.getValue().toString()));
-                    ReservationSystem rs = new ReservationSystem(null, IntroViewController.getField, field_check_store.getText(),
+                    ReservationSystem rs = new ReservationSystem(IntroViewController.getField, field_check_store.getText(),
                             java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString()),
                             listCheck.get(idx), listCheckAmount.get(idx), 0);
-                    
-                    rs.update();
+                    if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
+                            java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString())) == 1) {
+                        rs.setReservationState(PossibleReservation.instance());
+                        rs.update();
+
+                    }
+                    else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
+                            java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString())) == 2) {
+                        rs.setReservationState(WaitingReservation.instance());
+                        rs.update();
+
+                    } 
+                    else if (rd.checkSequence(IntroViewController.getField, field_check_store.getText(),
+                            java.sql.Date.valueOf(datepicker.getValue()), Integer.parseInt(choice_time.getValue().toString())) == 3) {
+                        rs.setReservationState(FullReservation.instance());
+                        rs.update();
+
+                    } 
                 }
 
             }

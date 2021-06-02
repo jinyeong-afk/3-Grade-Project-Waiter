@@ -507,6 +507,55 @@ public class ReservationDAO {
             System.out.println("guestReserve DB 로드 실패");
         }
     }
+    /**
+     * @메서드이름 : guestWaitReserve
+     * @작성날짜 : 21.05.18
+     * @용도 : 손님이 매장을 예약할때 값을 DB로 넘겨준다.
+     * @author 박성호
+     */
+    public void guestWaitReserve(String Guest_id, String storename, Date date, int time, String menu, int amount, int payCheck) {
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");;
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("guestReserve 연결");
+
+            int sequence = getSequence(Guest_id, storename, date, time);
+            int price = getMenuPrice(storename, menu);
+            System.out.println(sequence);
+            if (sequence < sequence + 4) {
+                sql = "insert into guest(guest_id, storename, reservation_date, reservation_time, menu, price, amount, pay_check, wait_sequence)";
+                sql += "values(?,?,?,?,?,?,?,?,?)";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, Guest_id);
+                pstmt.setString(2, storename);
+                pstmt.setDate(3, date);
+                pstmt.setInt(4, time);
+                pstmt.setString(5, menu);
+                pstmt.setInt(6, price);
+                pstmt.setInt(7, amount);
+                pstmt.setInt(8, payCheck);
+                pstmt.setInt(9, sequence);
+                rs = pstmt.executeQuery();
+                if (rs != null) {
+                    rs.close();
+                    System.out.println("guestWaitReserve 닫기");
+                }
+                if (stmt != null) {
+                    stmt.close();
+                    System.out.println("guestWaitReserve 닫기");
+                }
+                if (conn != null) {
+                    conn.close();
+                    System.out.println("guestWaitReserve 닫기");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("guestWaitReserve DB 로드 실패");
+        }
+
+    }
 
     /**
      * @메서드이름 : guestFullReserve
@@ -605,6 +654,36 @@ public class ReservationDAO {
         }
 
         return sequence;
+    }
+ /**
+     * @메서드이름 : getMax
+     * @작성날짜 : 21.05.20
+     * @용도 :  매장의 최대 테이블 개수를 가져온다..
+     * @author 박성호
+     */
+    public int getMax(String storename) {
+
+        int max = 0;
+
+        try {
+//            Class.forName("oracle.jdbc.driver.OracleDriver");
+//            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("getMax 연결");
+
+            sql = "select max from store where storename = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, storename);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                max = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("getMax DB 로드 실패");
+        }
+
+        return max;
     }
 
     /**

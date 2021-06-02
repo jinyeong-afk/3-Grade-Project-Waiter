@@ -17,3 +17,4 @@ public interface ReservationState {
      void updateState(ReservationSystem reservationSystem, String guestId, String storeName, Date reserveDate, int resertime, String menu, int amount, int payCheck);
     
 }
+    
