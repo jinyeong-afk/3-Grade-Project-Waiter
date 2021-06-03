@@ -232,7 +232,9 @@ public class StoreManagerMenuManageViewController implements Initializable{
                         & !(field_open_time.getText().equals(""))))
                         { 
                         
-                        sd.Changemenu(sd.getstorename(IntroViewController.getField), field_storename.getText()); 
+                        sd.Changeguest(sd.getstorename(IntroViewController.getField), field_storename.getText()); 
+                        sd.Change("store_review",sd.getstorename(IntroViewController.getField), field_storename.getText()); 
+                        sd.Change("menu",sd.getstorename(IntroViewController.getField), field_storename.getText()); 
                         sd.ChangeStore(IntroViewController.getField, field_storename.getText(), field_storeaddress.getText(),   
                         field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()), 
                         Integer.parseInt(field_max.getText()));

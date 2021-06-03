@@ -134,20 +134,47 @@ public class StoreDAO{
     * @용도 : store 테이블에서 매개변수를 받은 ID의를 검색해서 다른 매개변수들 값으로 DB를 수정한다. .
     * @author 허세진
     */
-    public void Changemenu(String storename, String mdstorename){
+    public void Change(String table, String storename, String mdstorename){
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
                 System.out.println("ChangeStore 연결"); 
                 
-                sql = "UPDATE menu SET store_name = ? WHERE store_name = ? ";
+                sql = "UPDATE "+table+" SET store_name = ? WHERE store_name = ? ";
                 
                 
                 pstmt = conn.prepareStatement(sql);
               
+              
                 pstmt.setString(1, mdstorename);
                 pstmt.setString(2, storename);
-         
+              
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }  
+     public void Changeguest(String storename, String mdstorename){
+            try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("ChangeStore 연결"); 
+                
+                sql = "UPDATE guest SET storename = ? WHERE storename = ? ";
+                
+                
+                pstmt = conn.prepareStatement(sql);
+              
+              
+                pstmt.setString(1, mdstorename);
+                pstmt.setString(2, storename);
+           
+           
                 rs=pstmt.executeQuery();
                 
                 if(rs != null) rs.close();
