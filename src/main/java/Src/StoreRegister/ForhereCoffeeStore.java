@@ -11,7 +11,7 @@ package Src.StoreRegister;
  */
 public class ForhereCoffeeStore extends Store {
       public ForhereCoffeeStore(String id){
-            storename= "커피";
+            storename= id+"의 카페";
             this.id = id;
             tabletype = "ForHere";
             storeaddress = "주소를 변경하세요";
