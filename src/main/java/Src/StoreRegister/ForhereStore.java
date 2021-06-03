@@ -14,7 +14,7 @@ public class ForhereStore extends StoreRegister{
     @Override
     public Store createStore(String id, String type) {
         switch(type){
-            case "Coffee":
+            case "Cafe":
                 System.out.println("forhere 커피 생성");
                 return new ForhereCoffeeStore(id);
             case "Bakery":

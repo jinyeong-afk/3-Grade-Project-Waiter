@@ -15,7 +15,7 @@ public class TakeoutStore extends StoreRegister{
     @Override
     protected Store createStore(String id, String type) {
         switch(type){
-            case "Coffee":
+            case "Cafe":
                 return new TakeoutCoffeeStore(id);
             case "Bakery":
                 return new TakeoutbakeryStore(id);

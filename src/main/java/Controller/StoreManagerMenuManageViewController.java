@@ -108,6 +108,13 @@ public class StoreManagerMenuManageViewController implements Initializable{
         if(!(sd.checkRegist(IntroViewController.getField))){
             
             btn_store_modify.setVisible(false); //수정 버튼은 사라진다
+             field_storename.setVisible(false);
+                            field_storeaddress.setVisible(false);
+                            field_storetel.setVisible(false);
+                            field_open_time.setVisible(false);
+                            field_end_time.setVisible(false);
+                            field_max.setVisible(false);
+                            field_storetype.setVisible(false); 
             btn_store_register.setOnMouseClicked(new EventHandler<MouseEvent>() { //마우스 등록버튼 클릭시 발생 이벤트 현재 매장 정보 등록
                 @Override
                 public void handle(MouseEvent event) { 
@@ -115,13 +122,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                     radio_coffee.setVisible(false); 
                     radio_bakery.setVisible(false); //라디오 버튼은 사라진다
                     btn_store_register.setVisible(false); //가게 등록 버튼은 사라진다
-                      field_storename.setVisible(false);
-                            field_storeaddress.setVisible(false);
-                            field_storetel.setVisible(false);
-                            field_open_time.setVisible(false);
-                            field_end_time.setVisible(false);
-                            field_max.setVisible(false);
-                            field_storetype.setVisible(false); 
+                     
                         if(sd.checkforhere(IntroViewController.getField)){
                               
                                 System.out.println(store_type);
