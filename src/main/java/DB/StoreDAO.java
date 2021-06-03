@@ -260,7 +260,7 @@ public void signUpMenu(String store_name, String menu_name, int price){
                 System.out.println("signUpStore 연결"); 
                 
                 sql = "insert into store(store_id, storename, storetell, storeaddress, open_time, close_time, max, storetype, permission)";
-                sql+= "values(?,?,?,?,?,?,?,?, 1)";
+                sql+= "values(?,?,?,?,?,?,?,?, 0)";
                 
                 
                 pstmt = conn.prepareStatement(sql);

@@ -11,18 +11,17 @@ import DB.UserDAO;
  *
  * @author 박성호
  */
-// 정보 수정 작업
 public class ModifyTask extends AdministratorTask{
 
 
     @Override
     public void task(String id, String pw) {
         UserDAO ud = new UserDAO();
-        ud.ModifyInfo(id, pw); // ID와 PW를 활용하여 정보를 변경한다.
+        ud.ModifyInfo(id, pw);
     }
 
     @Override
-    public void result() {  // 변경된 정보를 반영한다.
+    public void result() {
         System.out.println( "사용자 정보를 수정하였습니다.");
        
     }
