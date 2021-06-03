@@ -101,7 +101,7 @@ public class StoreSignUpController implements Initializable {
                             .build();
                     storeManagerBuilder.SignUp(2);
                     System.out.println("회원가입이 완료되었습니다.");
-
+                     setWindow("회원가입이 완료되었습니다.");
                     Stage stage = (Stage) btn_goback.getScene().getWindow();
                     Parent main = null;
 
@@ -114,8 +114,14 @@ public class StoreSignUpController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 }
-
-                setWindow("회원가입이 완료되었습니다.");
+                else if(check_id == 0){
+                 setWindow("ID 중복 체크를 해주세요");
+                }
+                else
+                {
+                    setWindow("빈 공간 없이 입력해주세요");
+                }
+               
             }
         }
         );

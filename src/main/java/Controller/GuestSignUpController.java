@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import static Controller.StoreSignUpController.setWindow;
 import DB.DTO;
 import DB.MemberDAO;
 import Src.SignUp_BuilderPattern.GuestBuilder;
@@ -99,9 +100,7 @@ public class GuestSignUpController implements Initializable {
                              .setAddress(field_signupadress.getText())
                              .build();
                     guestBuilder.SignUp(1);
-                    System.out.println("회원가입이 완료되었습니다.");
-
-                                    
+                    System.out.println("회원가입이 완료되었습니다.");  
                     setWindow("회원가입이 완료되었습니다.");
                     Stage stage = (Stage) btn_goback.getScene().getWindow();
                     Parent main = null;
@@ -114,6 +113,13 @@ public class GuestSignUpController implements Initializable {
                     Scene scene = new Scene(main);
                     stage.setScene(scene);
                     stage.show();
+                }
+                  else if(check_id == 0){
+                 setWindow("ID 중복 체크를 해주세요");
+                }
+                else
+                {
+                    setWindow("빈 공간 없이 입력해주세요");
                 }
             }
         }

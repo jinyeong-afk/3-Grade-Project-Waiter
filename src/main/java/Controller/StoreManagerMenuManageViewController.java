@@ -6,6 +6,7 @@
 package Controller;
 
 
+import static Controller.GuestSignUpController.setWindow;
 import DB.LoginDTO;
 import DB.StoreDAO;
 import Src.StoreRegister.ForhereStore;
@@ -108,13 +109,13 @@ public class StoreManagerMenuManageViewController implements Initializable{
         if(!(sd.checkRegist(IntroViewController.getField))){
             
             btn_store_modify.setVisible(false); //수정 버튼은 사라진다
-             field_storename.setVisible(false);
-                            field_storeaddress.setVisible(false);
-                            field_storetel.setVisible(false);
-                            field_open_time.setVisible(false);
-                            field_end_time.setVisible(false);
-                            field_max.setVisible(false);
-                            field_storetype.setVisible(false); 
+            field_storename.setVisible(false);
+            field_storeaddress.setVisible(false);
+            field_storetel.setVisible(false);
+            field_open_time.setVisible(false);
+            field_end_time.setVisible(false);
+            field_max.setVisible(false);
+            field_storetype.setVisible(false); 
             btn_store_register.setOnMouseClicked(new EventHandler<MouseEvent>() { //마우스 등록버튼 클릭시 발생 이벤트 현재 매장 정보 등록
                 @Override
                 public void handle(MouseEvent event) { 
@@ -230,11 +231,13 @@ public class StoreManagerMenuManageViewController implements Initializable{
                         & !(field_storetype.getText().equalsIgnoreCase("forhere") || field_storetype.getText().equalsIgnoreCase("takeout"))
                         & !(field_open_time.getText().equals(""))))
                         { 
-                     
+                        
+                        sd.Changemenu(sd.getstorename(IntroViewController.getField), field_storename.getText()); 
                         sd.ChangeStore(IntroViewController.getField, field_storename.getText(), field_storeaddress.getText(),   
                         field_storetel.getText(), Integer.parseInt(field_open_time.getText()), Integer.parseInt(field_end_time.getText()), 
                         Integer.parseInt(field_max.getText()));
-                        
+                   
+                        setWindow("매장 정보 변경");
                         System.out.println("매장 정보 변경");
                         }
             }
@@ -258,7 +261,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                         & !(field_registor_price.getText().equals(""))))
                        { 
                             sd.signUpMenu(field_storename.getText(), field_registor_menuname.getText(), Integer.parseInt(field_registor_price.getText()));
-                             
+                            setWindow(field_registor_menuname.getText() +"메뉴를 추가 했습니다."); 
                             //메뉴 리스트박스에 현재 store의 메뉴 모두 출력
                             MenuStoreList = FXCollections.observableArrayList();  // 배열화
                             listStoreMenu = sd.getMenuNameList(field_storename.getText());
@@ -289,6 +292,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                         & !(field_registor_price.getText().equals(""))))
                         { 
                                 System.out.println("메뉴 수정");
+                                setWindow(field_registor_menuname.getText() +"메뉴를 수정 했습니다."); 
                                 sd.Modifymenu(field_storename.getText(), field_registor_menuname.getText(), Integer.parseInt(field_registor_price.getText()));
                                 //메뉴 리스트박스에 현재 store의 메뉴 모두 출력
                                 
@@ -319,6 +323,7 @@ public class StoreManagerMenuManageViewController implements Initializable{
                     if( !(field_registor_menuname.getText().equals("")))
                        { 
                                 System.out.println("메뉴 삭제");
+                                setWindow(field_registor_menuname.getText() +"메뉴를 삭제 했습니다."); 
                                 sd.Delmenu(field_storename.getText(), field_registor_menuname.getText());
                                 
                                 MenuStoreList = FXCollections.observableArrayList();  // 배열화

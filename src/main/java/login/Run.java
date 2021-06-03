@@ -5,7 +5,9 @@
  */
 package login;
 
-import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 
@@ -21,38 +23,20 @@ public class Run {
     
 
     
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws ParseException{
         // TODO code application logic here
-        signUpClass su = new signUpClass();
-        loginClass li = new loginClass();
-        
-        int value = 0;
-        
-        Scanner sc = new Scanner(System.in);
-        while(true)
-        {
-            System.out.println("(0: 회원가입, 1: 로그인, 2: 종료): ");
-            value = sc.nextInt();
-            if(value == 0)
-            {
-                su.signUp();
+ 
+            SimpleDateFormat dateFormat = new 
+                SimpleDateFormat ("yyyy-MM-dd");
+            Date now = new Date();
+            
+            Date date2 = dateFormat.parse("2020-01-25");
+            if (now.after(date2)) {
+                System.out.println(
+                    "Date-1 is > Date-2");
             }
-            else if(value == 1)
-            {
-                li.login();
-            }
-            else if(value == 2)
-            {
-                System.out.println("종료");
-                break;
-            }
-            else
-            {
-                System.out.println("다시 입력해주세요");
-                continue;
-            }
-        }
-        
+         
+            
     }
     
 }

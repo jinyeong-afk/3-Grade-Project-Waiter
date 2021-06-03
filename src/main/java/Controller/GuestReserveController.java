@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import static Controller.StoreSignUpController.setWindow;
 import DB.ReservationDAO;
 import DB.StoreDAO;
 import Src.Reservation_StatePattern.FullReservation;
@@ -13,6 +14,7 @@ import Src.Reservation_StatePattern.ReservationSystem;
 import Src.Reservation_StatePattern.WaitingReservation;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -194,9 +196,12 @@ public class GuestReserveController implements Initializable {
         btn_guest_menuorder.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+               
                 ArrayList<String> listCheck = new ArrayList<>();
                 ArrayList<Integer> listCheckAmount = new ArrayList<>();
                 int loop = 0;
+                //datepicker.getValue();
+                 setWindow("예약 완료");
                 OderCheckList = list_ordercheck.getItems();
 //                 OderCheckList = list_ordercheck.getItems();
 //                    System.out.println(OderCheckList.get(0));

@@ -128,6 +128,36 @@ public class StoreDAO{
                 System.out.println("DB 로드 실패");
             }
     }  
+     /**
+    * @메서드이름 : Changemenu
+    * @작성날짜 : 21.06.03
+    * @용도 : store 테이블에서 매개변수를 받은 ID의를 검색해서 다른 매개변수들 값으로 DB를 수정한다. .
+    * @author 허세진
+    */
+    public void Changemenu(String storename, String mdstorename){
+            try{
+                Class.forName("oracle.jdbc.driver.OracleDriver");
+                conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+                System.out.println("ChangeStore 연결"); 
+                
+                sql = "UPDATE menu SET store_name = ? WHERE store_name = ? ";
+                
+                
+                pstmt = conn.prepareStatement(sql);
+              
+                pstmt.setString(1, mdstorename);
+                pstmt.setString(2, storename);
+         
+                rs=pstmt.executeQuery();
+                
+                if(rs != null) rs.close();
+                if(stmt != null) stmt.close();
+                if(conn != null) conn.close();
+            } catch(Exception e) {
+                e.printStackTrace();
+                System.out.println("DB 로드 실패");
+            }
+    }  
     public boolean checkforhere (String id){  
 	boolean check = false;
         
@@ -389,5 +419,37 @@ public ArrayList<String> getStringStoreInformaiton(String id) throws SQLExceptio
                 System.out.println("DB 로드 실패");
             }
         return list;
+    }
+    public String getstorename(String id) {
+
+        String value = "";
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@sedb.deu.ac.kr:1521:orcl", "a20173192", "20173192");
+            System.out.println("연결");
+            //sql = "select guest_id from guest where storename = ? ";
+            sql = "select storename from store where store_id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                value = rs.getString(1);
+            }
+
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("DB 로드 실패");
+        }
+        return value;
     }
 }
