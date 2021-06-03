@@ -29,6 +29,7 @@ public class FullReservation implements ReservationState {
         ReservationDAO rd = new ReservationDAO();
 
         System.out.println("fullREservation");
+        
         rd.guestFullReserve(guestId, storeName, reserveDate, reserveTime, menu, amount, payCheck);
 
     }
