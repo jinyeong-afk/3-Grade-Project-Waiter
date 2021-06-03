@@ -15,7 +15,13 @@ import java.util.ArrayList;
  */
 public class PossibleReservation implements ReservationState {
 
-    //Singletone 패턴을 적용하여 객체 생성
+//    @Override
+//    public boolean reservation(String Guest_id, String storename, Date date, int time, int price, int amount, String menu, int payCheck, int sequence){
+//        ReservationDAO rd = new ReservationDAO();
+//        rd.guestReserve(Guest_id, storename, date, time, price, amount, menu, payCheck);
+//        return true;
+//    }
+    //Singletone
     private static PossibleReservation instance = new PossibleReservation();
 
     private PossibleReservation() {
@@ -31,7 +37,7 @@ public class PossibleReservation implements ReservationState {
         ReservationDAO rd = new ReservationDAO();
 
         System.out.println("PossibleReservation");
-        rd.guestReserve(guestId, storeName, reserveDate, reserveTime, menu, amount, payCheck);  // DB를 통해 정상적으로 예약 반영
+        rd.guestReserve(guestId, storeName, reserveDate, reserveTime, menu, amount, payCheck);
 
     }
 }
