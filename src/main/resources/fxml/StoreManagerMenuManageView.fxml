@@ -50,8 +50,8 @@
             <Font name="Arial" size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="field_max" layoutX="539.0" layoutY="325.0" prefHeight="26.0" prefWidth="263.0" promptText="재고 수량 또는 테이블 수량" stylesheets="@../styles/textfield.css" />
-      <RadioButton fx:id="radio_coffee" layoutX="428.0" layoutY="188.0" mnemonicParsing="false" text="Coffee">
+      <TextField fx:id="field_max" layoutX="539.0" layoutY="325.0" prefHeight="26.0" prefWidth="263.0" promptText="재고 수량 또는 테이블 수량" stylesheets="@../styles/textfield.css" visible="false" />
+      <RadioButton fx:id="radio_coffee" layoutX="428.0" layoutY="188.0" mnemonicParsing="false" text="Cafe">
          <toggleGroup>
             <ToggleGroup fx:id="storetitle" />
          </toggleGroup>
